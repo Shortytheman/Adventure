@@ -11,5 +11,7 @@ public class Room {
     this.name = name;
     this.description = description;
   }
-
+public void roomDescriptions(){
+  Room room1 = new Room("Gloomy room","A thick cloud of gloomy ashes covers the room..\nyou look around and the room clears up with the brease you brought..");
+}
 }
