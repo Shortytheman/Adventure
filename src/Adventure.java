@@ -1,25 +1,24 @@
-import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Adventure {
 
-  int[][] rooms = {{1,2,3},{4,5,6},{7,8,9}};
-  public String goNorth;
-  public String goSouth;
-  public String goEast;
-  public String goWest;
+  Room currentRoom; // Rum 1-9.
 
-  public void Rooms() {
-    for(int i=0; i<rooms.length; i++) {
-      for(int j=0; j<rooms[0].length; j++) {
-        System.out.print(rooms[i][j] + " ");
-      }
-      System.out.println();
-      }
-    }
-    
+  public String choice(){
+    Scanner scanner = new Scanner(System.in);
+    String choice;
+    do {
+    System.out.println("Wrong choice.. Plz input w, e, s or n for directions.");
+    choice = scanner.nextLine();
+}
+while (!Objects.equals(choice, "w") || !Objects.equals(choice, "e") || !Objects.equals(choice, "s") || !Objects.equals(choice, "n"));
+    return choice;
+  }
+
     public static void main (String[] args) {
-      Adventure gg = new Adventure();
-      gg.Rooms();
+    Adventure gg = new Adventure();
+    gg.choice();
     }
   }
 
