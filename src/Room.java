@@ -7,11 +7,41 @@ public class Room {
   String name;
   String description;
 
-  public Room(String name, String description){
+  public Room(String name, String description) {
     this.name = name;
     this.description = description;
   }
-public void roomDescriptions(){
-  Room room1 = new Room("Gloomy room","A thick cloud of gloomy ashes covers the room..\nyou look around and the room clears up with the brease you brought..");
-}
+  public Room(){
+  }
+
+
+  public void setNorth(Room room) {
+    this.north = room;
+  }
+
+  public void setSouth(Room room) {
+    this.south = room;
+  }
+
+  public void setWest(Room room) {
+    this.west = room;
+  }
+
+  public void setEast(Room room) {
+    this.east = room;
+  }
+  public Room getNorth(){
+    return north;
+  }
+
+  public Room getSouth(){
+    return south;
+  }
+  public Room getWest(){
+    return west;
+  }
+  public Room getEast(){
+    return east;
+  }
+
 }
