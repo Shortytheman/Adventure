@@ -1,16 +1,18 @@
 public class Room {
-  Room north = null;
-  Room south = null;
-  Room west = null;
-  Room east = null;
+  private Room north = null;
+  private Room south = null;
+  private Room west = null;
+  private Room east = null;
 
   String name;
   String description;
 
-  public Room(String name, String description){
+  public Room(String name, String description) {
     this.name = name;
     this.description = description;
   }
+
+
   public void setNorth(Room room) {
     this.north = room;
   }
@@ -23,14 +25,17 @@ public class Room {
   public void setEast(Room room) {
     this.east = room;
   }
-  // hvis man printer et rum med resulterer det i stackoverflow
-   /*public String toString() {
-    return "Name: " + name + "\nDescription: " + description + "\nNorth: " + north + ", South: " + south + ", " +
-            "West: " + west + ", East: " + east;
-            }
-    */
+  public Room getNorth(){
+    return north;
+  }
+  public Room getSouth(){
+    return south;
+  }
+  public Room getWest(){
+    return west;
+  }
+  public Room getEast(){
+    return east;
   }
 
-
-
-
+}
