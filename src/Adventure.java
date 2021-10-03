@@ -5,9 +5,12 @@ public class Adventure {
 
     private Room currentRoom; // Rum 1-9.
     private String playerName;
-    Room room1 = new Room("Cave entrance", "There is a glooming light in the corner, must be from where i came in.. I'll have to take either the way " +
+    boolean gameIsRunning = true;
+    String choice;
+
+    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where i came in.. I'll have to take either the way " +
             "to the right or straight down to explore..");
-    Room room2 = new Room("Chance room", "here, only the lucky will persevere");
+    Room room2 = new Room("chance room", "here, only the lucky will persevere");
     Room room3 = new Room("room3", "Dette er rum 3");
     Room room4 = new Room("room4", "Dette er rum 4");
     Room room5 = new Room("room5", "Dette er rum 5");
@@ -18,7 +21,6 @@ public class Adventure {
 
     public String choice() {
         Scanner scanner = new Scanner(System.in);
-        String choice;
 
         do {
             choice = scanner.nextLine();
@@ -113,8 +115,6 @@ public class Adventure {
         System.out.println("skoven har btug for en helt, godt du er her " + playerName + ", vi har brug for din hjælp.");
         System.out.println("Skriv kort de ting man kan");
 
-        boolean gameIsRunning = true;
-
         while (gameIsRunning) {
             move();
             if (getCurrentRoom() == room5) {
@@ -160,63 +160,80 @@ public class Adventure {
     public void roomActivity() {
         int result = 0;
         String roll;
-        if (currentRoom.name.equals("Chance room")) {
-            System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
-            Scanner scanner = new Scanner(System.in);
+        if (!choice.equalsIgnoreCase("go north")) {
+            if (currentRoom.name.equalsIgnoreCase("chance room")) {
+                System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
+                Scanner scanner = new Scanner(System.in);
 
-            do {
-                roll = scanner.nextLine();
-                if (roll.equalsIgnoreCase("roll")) {
-                    result = diceThrow();
-                } else
-                    System.out.println("Wrong input, try again.");
-            }
-            while (!roll.equalsIgnoreCase("roll"));
+                do {
+                    roll = scanner.nextLine();
+                    if (roll.equalsIgnoreCase("roll")) {
+                        result = diceThrow();
+                    } else
+                        System.out.println("Wrong input, try again.");
+                }
+                while (!roll.equalsIgnoreCase("roll"));
 
-            System.out.println(result);
-            switch (result) {
-                case 1:
-                    System.out.println("You've won a NOTHING, you must venture on empty handed..");
-                    break;
-                case 2:
-                    System.out.println("2 out of 6. what a shame! no reward for such an abysmal result");
-                    break;
-                case 3:
-                    System.out.println("Right in the middle, you have received the right to yell \"Martin & Niklas rulez\"");
-                    break;
-                case 4:
-                    System.out.println("Topend, you get a handshake from a real life leprechaun");
-                    break;
-                case 5:
-                    System.out.println("Good roll traveler, you receive a kiss from a faerie.");
-                    break;
-                case 6:
-                    System.out.println("You hit the jackpot, and will get teleported to a random room");
-                    int f = diceThrow();
-                    if (f == 1) {
-                        setCurrentRoom(room1);
-                    }
-                    if (f == 2) {
-                        setCurrentRoom(room3);
-                    }
-                    if (f == 3) {
-                        setCurrentRoom(room4);
-                    }
-                    if (f == 4) {
-                        setCurrentRoom(room6);
-                    }
-                    if (f == 5) {
-                        setCurrentRoom(room7);
-                    }
-                    if (f == 6) {
-                        setCurrentRoom(room8);
-                    }
-                    System.out.println(currentRoom.description);
-                    break;
+                System.out.println("you rolled: " + result);
+                switch (result) {
+                    case 1:
+                        System.out.println("You've managed to lose the entire game on a dice throw... u ded");
+                        gameIsRunning = false;
+                        break;
+                    case 2:
+                        System.out.println("What a shame! no reward for such an abysmal result");
+                        break;
+                    case 3:
+                        System.out.println("Right in the middle, you have received the right to yell \"Martin & Niklas rulez\"");
+                        break;
+                    case 4:
+                        System.out.println("Topend, you get a handshake from a real life leprechaun");
+                        break;
+                    case 5:
+                        System.out.println("Good roll traveler, you receive a kiss from a faerie.");
+                        break;
+                    case 6:
+                        System.out.println("You hit the jackpot, will now be teleported to a random location");
+                        double f = 1 + (Math.random() * 8);
+                        if ((int) f == 1) {
+                            setCurrentRoom(room1);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 2) {
+                            setCurrentRoom(room3);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 3) {
+                            setCurrentRoom(room4);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 4) {
+                            setCurrentRoom(room6);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 5) {
+                            setCurrentRoom(room7);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 6) {
+                            setCurrentRoom(room8);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                        if ((int) f == 7) {
+                            setCurrentRoom(room9);
+                            System.out.println("You were teleported to the " + currentRoom.name);
+                            System.out.println(currentRoom.description);
+                        }
+                }
             }
         }
     }
-
     public static void main(String[] args) {
         Adventure run = new Adventure();
         run.run();
