@@ -5,7 +5,7 @@ public class Adventure {
 
     private Room currentRoom; // Rum 1-9.
     private String playerName;
-    boolean gameIsRunning = true;
+    private boolean gameIsRunning = true;
     String choice;
 
     Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where i came in.. I'll have to take either the way " +
@@ -64,6 +64,12 @@ public class Adventure {
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
+    public Boolean getGameIsRunning() {
+        return this.gameIsRunning;
+    }
+    public void setGameIsRunning(Boolean gameIsRunning) {
+        this.gameIsRunning = gameIsRunning;
+    }
 
     public String toString() {
         return this.currentRoom + "";
@@ -115,11 +121,11 @@ public class Adventure {
         System.out.println("skoven har btug for en helt, godt du er her " + playerName + ", vi har brug for din hjælp.");
         System.out.println("Skriv kort de ting man kan");
 
-        while (gameIsRunning) {
+        while (getGameIsRunning()) {
             move();
             if (getCurrentRoom() == room5) {
                 System.out.println("You win, game over!");
-                gameIsRunning = false;
+                setGameIsRunning(false);
             }
         }
     }
@@ -160,7 +166,7 @@ public class Adventure {
     public void roomActivity() {
         int result = 0;
         String roll;
-        if (!choice.equalsIgnoreCase("go north")) {
+        if (!choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go south")) {
             if (currentRoom.name.equalsIgnoreCase("chance room")) {
                 System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
                 Scanner scanner = new Scanner(System.in);
@@ -178,7 +184,7 @@ public class Adventure {
                 switch (result) {
                     case 1:
                         System.out.println("You've managed to lose the entire game on a dice throw... u ded");
-                        gameIsRunning = false;
+                        setGameIsRunning(false);
                         break;
                     case 2:
                         System.out.println("What a shame! no reward for such an abysmal result");
@@ -195,6 +201,7 @@ public class Adventure {
                     case 6:
                         System.out.println("You hit the jackpot, will now be teleported to a random location");
                         double f = 1 + (Math.random() * 8);
+                        System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
                         if ((int) f == 1) {
                             setCurrentRoom(room1);
                             System.out.println("You were teleported to the " + currentRoom.name);
