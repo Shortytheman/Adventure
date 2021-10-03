@@ -200,7 +200,7 @@ public class Adventure {
                         break;
                     case 6:
                         System.out.println("You hit the jackpot, will now be teleported to a random location");
-                        double f = 1 + (Math.random() * 8);
+                        double f = 1 + (Math.random() * 7);
                         System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
                         if ((int) f == 1) {
                             setCurrentRoom(room1);
@@ -237,10 +237,13 @@ public class Adventure {
                             System.out.println("You were teleported to the " + currentRoom.name);
                             System.out.println(currentRoom.description);
                         }
+
+
+                        }
                 }
             }
         }
-    }
+
     public static void main(String[] args) {
         Adventure run = new Adventure();
         run.run();
