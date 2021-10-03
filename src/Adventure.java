@@ -1,44 +1,57 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Adventure {
 
-  Room currentRoom; // Rum 1-9.
+  private Room currentRoom; // Rum 1-9.
+  private String playerName;
+  Room room1 = new Room("Cave entrance", "There is a glooming light in the corner, must be from where i came in.. I'll have to take either the way " +
+      "to the right or straight down to explore..");
+  Room room2 = new Room("Chance room", "here, only the lucky will persevere");
+  Room room3 = new Room("room3", "Dette er rum 3");
+  Room room4 = new Room("room4", "Dette er rum 4");
+  Room room5 = new Room("room5", "Dette er rum 5");
+  Room room6 = new Room("room6", "Dette er rum 6");
+  Room room7 = new Room("room7", "Dette er rum 7");
+  Room room8 = new Room("room8", "Dette er rum 8");
+  Room room9 = new Room("room9", "Dette er rum 9");
 
   public String choice(){
     Scanner scanner = new Scanner(System.in);
     String choice;
-    System.out.println("Make your choice\n________________________ \nDirections: go north, go south, go west or go east to travel in the desired direction.\nAsk for help: help\nLook around: look");
-    choice = scanner.nextLine();
-    if (choice.equalsIgnoreCase("go west") || choice.equalsIgnoreCase("go east") || choice.equalsIgnoreCase("go south") || choice.equalsIgnoreCase("go north")) {
-      return choice;
-    }else if(choice.equalsIgnoreCase("exit")) {
-      System.out.println("Exiting game");
-      exitGame();
-    }
-    else if(choice.equalsIgnoreCase("help")){
-      System.out.print("\nSummoning a helping hand...");
-      help();
-    }
-    else if (choice.equalsIgnoreCase("look")){
-      System.out.println("You're looking around in the room");
-      look();
-    }
-      do {
-        System.out.println("Please enter one of the valid options");
-        choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("exit")) {
-          System.out.println("Exiting game");
-          exitGame();
-        } else if (choice.equalsIgnoreCase("help")) {
-          System.out.print("\nSummoning a helping hand...");
-          help();
-        } else if (choice.equalsIgnoreCase("look")){
-          System.out.println("You're looking around in the room");
-          look();
-        }
+
+    do {
+      choice = scanner.nextLine();
+      if (choice.equalsIgnoreCase("exit")) {
+        System.out.println("Exiting game");
+        exitGame();
+      } else if (choice.equalsIgnoreCase("help")) {
+        System.out.print("\nSummoning a helping hand...");
+        help();
+      } else if (choice.equalsIgnoreCase("look")){
+        System.out.println("You're looking around in the room");
+        look();
       }
-      while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east") && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
+      else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
+          && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
+          && !choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")){
+        System.out.println("Sorry i don't understand the input.. try again!");
+      }
+    }
+    while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east") && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
+
       return choice;
+  }
+  public int diceThrow(){
+    double g = 1 + (Math.random() * 6);
+    return (int)g;
+  }
+
+  public String getPlayerName() {
+    return this.playerName;
+  }
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
   }
   public Room getCurrentRoom(){
     return this.currentRoom;
@@ -57,6 +70,7 @@ public class Adventure {
     System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
     System.out.println("________________________\nTo look around: \"Look\"");
     System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
+    System.out.println("Make your choice to proceed" + getPlayerName());
   }
   void exitGame(){
     System.exit(0);
@@ -64,15 +78,6 @@ public class Adventure {
 
   public void run() {
     // Kalde rummene noget andet senere og lave descriptions.
-    Room room1 = new Room("room1", "dette er rum 1");
-    Room room2 = new Room("room2", "Dette er rum 2");
-    Room room3 = new Room("room3", "Dette er rum 3");
-    Room room4 = new Room("room4", "Dette er rum 4");
-    Room room5 = new Room("room5", "Dette er rum 5");
-    Room room6 = new Room("room6", "Dette er rum 6");
-    Room room7 = new Room("room7", "Dette er rum 7");
-    Room room8 = new Room("room8", "Dette er rum 8");
-    Room room9 = new Room("room9", "Dette er rum 9");
 
     room1.setEast(room2);
     room1.setSouth(room4);
@@ -95,60 +100,128 @@ public class Adventure {
 
     setCurrentRoom(room1);
 
+    System.out.println("Velkommen til, Skriv din navn");
+    Scanner scanner = new Scanner(System.in);
+    setPlayerName(scanner.nextLine());
+    System.out.println("skoven har btug for en helt, godt du er her " + playerName + ", vi har brug for din hjælp.");
+    System.out.println("Skriv kort de ting man kan");
 
     boolean gameIsRunning = true;
 
+    while (gameIsRunning){
+      move();
+      if(getCurrentRoom() == room5){
+        System.out.println("You win, game over!");
+        gameIsRunning = false;
+      }
+    }
   }
 
   public void move() {
 
-    String direction;
-    do {
-      direction = choice();
+    String direction = choice();
 
       if (direction.equalsIgnoreCase("go north")) {
-        if (currentRoom.getNorth() != null) {
-          setCurrentRoom(currentRoom.getNorth());
+        if (getCurrentRoom().getNorth() != null) {
+          setCurrentRoom(getCurrentRoom().getNorth());
           System.out.println("Going north!");
-          System.out.println(currentRoom.description);
+          System.out.println("You have entered the " + getCurrentRoom().name);
+          System.out.println(getCurrentRoom().description);
         } else {
           System.out.println("Can't go that way");
         }
       } else if (direction.equalsIgnoreCase("go south")) {
-        if (currentRoom.getSouth() != null) {
-          setCurrentRoom(currentRoom.getSouth());
+        if (getCurrentRoom().getSouth() != null) {
+          setCurrentRoom(getCurrentRoom().getSouth());
           System.out.println("Going south!");
-          System.out.println(currentRoom.description);
+          System.out.println("You have entered the " + getCurrentRoom().name);
+          System.out.println(getCurrentRoom().description);
         } else {
           System.out.println("Can't go that way");
         }
-
       } else if (direction.equalsIgnoreCase("go west")) {
-        if (currentRoom.getWest() != null) {
-          setCurrentRoom(currentRoom.getWest());
+        if (getCurrentRoom().getWest() != null) {
+          setCurrentRoom(getCurrentRoom().getWest());
           System.out.println("Going west!");
-          System.out.println(currentRoom.description);
+          System.out.println("You have entered the " + getCurrentRoom().name);
+          System.out.println(getCurrentRoom().description);
         } else {
           System.out.println("Can't go that way");
         }
       } else if (direction.equalsIgnoreCase("go east")) {
-        if (currentRoom.getEast() != null) {
-          setCurrentRoom(currentRoom.getEast());
+        if (getCurrentRoom().getEast() != null) {
+          setCurrentRoom(getCurrentRoom().getEast());
           System.out.println("Going east!");
-          System.out.println(currentRoom.description);
+          System.out.println("You have entered the " + getCurrentRoom().name);
+          System.out.println(getCurrentRoom().description);
         } else {
           System.out.println("Can't go that way");
         }
       }
+      roomActivity();
     }
-    while (direction.equalsIgnoreCase("go north") || direction.equalsIgnoreCase("go south") || direction.equalsIgnoreCase("go east") ||
-        direction.equalsIgnoreCase("go west"));
-  }
+    public void roomActivity() {
+      int result = 0;
+      String roll;
+      if (currentRoom.name.equals("Chance room")) {
+        System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
+        Scanner scanner = new Scanner(System.in);
 
+        do {
+          roll = scanner.nextLine();
+          if (roll.equalsIgnoreCase("roll")) {
+            result = diceThrow();
+          } else
+            System.out.println("Wrong input, try again.");
+        }
+        while (!roll.equalsIgnoreCase("roll"));
+
+        System.out.println(result);
+        switch (result) {
+          case 1:
+            System.out.println("You've won a NOTHING, you must venture on empty handed..");
+            break;
+          case 2:
+            System.out.println("2 out of 6. what a shame! no reward for such an abysmal result");
+            break;
+          case 3:
+            System.out.println("Right in the middle, you have received the right to yell \"Martin & Niklas rulez\"");
+            break;
+          case 4:
+            System.out.println("Topend, you get a handshake from a real life leprechaun");
+            break;
+          case 5:
+            System.out.println("Good roll traveler, you receive a kiss from a faerie.");
+            break;
+          case 6:
+            System.out.println("You hit the jackpot, and will get teleported to a random room");
+            int f = diceThrow();
+            if (f == 1){
+              setCurrentRoom(room1);
+            }
+            if (f == 2){
+              setCurrentRoom(room3);
+            }
+            if (f == 3){
+              setCurrentRoom(room4);
+            }
+            if (f == 4){
+              setCurrentRoom(room6);
+            }
+            if (f == 5){
+              setCurrentRoom(room7);
+            }
+            if (f == 6){
+              setCurrentRoom(room8);
+            }
+            System.out.println(currentRoom.description);
+            break;
+        }
+      }
+    }
   public static void main(String[] args) {
     Adventure run = new Adventure();
     run.run();
-    run.move();
   }
 }
 
