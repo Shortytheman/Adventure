@@ -9,19 +9,26 @@ public class Adventure {
     private int stepCounter;
     private final int MAX_STEPS = 30;
 
-    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
+    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
+            " where you came in.. you¨ll have to take either the way " +
             "to the right or straight down to explore further..");
-    Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches you with a deal");
-    Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet and bad quality soap, better get out quick, yuck..");
-    Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at them go.. don't you just want to\nstay here forever?");
-    Room room5 = new Room("THE ROOM OF WINNINGS!", "You did it man.. when no one believed in you, not even yourself, so how'd u get out? like\n" +
+    Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches " +
+            "you with a deal");
+    Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet" +
+            " and bad quality soap, better get out quick, yuck..");
+    Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at " +
+            "them go.. don't you just want to\nstay here forever?");
+    Room room5 = new Room("ROOM OF WINNINGS!", "You did it man.. when no one believed in you" +
+            ", not even yourself, so how'd u get out? like\n" +
         "really please tell me, i need to know for realz man.. congratz");
-    Room room6 = new Room("hall of bling bling", "The room is full of gold and glitters, but everytime your eyes gaze upon the treasures\n" +
+    Room room6 = new Room("hall of bling bling", "The room is full of gold and glitters," +
+            " but everytime your eyes gaze upon the treasures\n" +
         "your butt starts to itch.. better keep moving before you make too much of a mess in your behind");
     Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
-    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north here, i will kill\n a puppy from the room of " +
+    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north " +
+            "here, i will kill\n a puppy from the room of " +
         "distractions.. i PROMISE I WILL.. so don't do it! ");
-    Room room9 = new Room("you-are-probably-lost area", "ey " + getPlayerName() + ", you're probably lost, like so many of us.. better get moving");
+    Room room9 = new Room("you-are-probably-lost area");
 
     public String choice() {
         Scanner scanner = new Scanner(System.in);
@@ -39,13 +46,15 @@ public class Adventure {
                 look();
             } else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
                     && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
-                    && !choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")) {
+                    && !choice.equalsIgnoreCase("go north") &&
+                    !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south"))
+            {
                 System.out.println("Sorry i don't understand the input.. try again!");
             }
         }
         while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
-                && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north") &&
-                !choice.equalsIgnoreCase("exit")));
+                && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")
+                && !choice.equalsIgnoreCase("exit")));
 
         return choice;
     }
@@ -100,9 +109,11 @@ public class Adventure {
     }
 
     void help() {
-        System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. You've asked for advice " +
-            "on your journey and i shall provide you with your options.\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
-        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
+        System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. " +
+                "You've asked for advice " + "on your journey and i shall provide you with your options." +
+                "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
+        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
+                "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
         System.out.println("Make your choice to proceed, " + getPlayerName() + "!");
@@ -126,7 +137,8 @@ public class Adventure {
 
         setCurrentRoom(room1);
 
-        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, sign the waiver of \"prolly ok\"\n");
+        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, " +
+                "sign the waiver of \"prolly ok\"\n");
         System.out.print("""
             |The waiver of prolly ok                                            |
             |bla bla, something about having being trapped forever jada jada..  |
@@ -135,13 +147,20 @@ public class Adventure {
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
 
-        System.out.println("\nMuahaha, you now belong to the cave.. Find your way out and your soul shall be saved..\nI will grant you.. hmm.." +
-            "100 steps in my cave before exhaustion gets the best of you. - Waiiit..\"looking at the waiver\".. \nyour name is " + getPlayerName() + "?!.. for such " +
+        room9.setDescription("ey " + getPlayerName() + ", you are probably lost, like so many of us... " +
+                "better get moving.");
+
+        System.out.println("\nMuahaha, you now belong to the cave.. Find your way out and your soul shall be saved.." +
+                "\nI will grant you.. hmm.." +
+            "100 steps in my cave before exhaustion gets the best of you. - Waiiit..\"looking at the waiver\".. " +
+                "\nyour name is " + getPlayerName() + "?!.. for such " +
             "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
 
-        System.out.println("\n - Luckily your journey has been blessed by Merlin the great wizard and he wants you to succeed\n" +
-            "he has bestowed upon you the gift of choice, and therefore you have the following choices: ");
-        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
+        System.out.println("\n - Luckily your journey has been blessed by Merlin the great wizard and he wants you " +
+                "to succeed\n" + "he has bestowed upon you the gift of choice, " +
+                "and therefore you have the following choices: ");
+        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
+                "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo summon help: \"Help\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
@@ -215,7 +234,8 @@ public class Adventure {
         String roll;
         if (!choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go south")) {
             if (getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
-                System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
+                System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\"" +
+                        " to roll the dice and i will reveal your reward");
                 Scanner scanner = new Scanner(System.in);
 
                 do {
@@ -237,7 +257,8 @@ public class Adventure {
                         System.out.println("What a shame! no reward for such an abysmal result");
                         break;
                     case 3:
-                        System.out.println("Right in the middle, you have received the right to yell \"Martin & Niklas rulez\"");
+                        System.out.println("Right in the middle, you have received the right to yell" +
+                                " \"Martin & Niklas rulez\"");
                         break;
                     case 4:
                         System.out.println("Topend, you get a handshake from a real life leprechaun." +

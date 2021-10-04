@@ -11,7 +11,10 @@ public class Room {
     this.name = name;
     this.description = description;
   }
-
+  public Room(String name) {
+      this.name = name;
+  }
+  public Room() {}
 
   public void setNorth(Room room) {
     this.north = room;
