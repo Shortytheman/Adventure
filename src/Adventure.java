@@ -41,7 +41,7 @@ public class Adventure {
             }
         }
         while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
-            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north") &&
+                && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north") &&
                 !choice.equalsIgnoreCase("exit")));
 
         return choice;
@@ -67,9 +67,11 @@ public class Adventure {
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
+
     public Boolean getGameIsRunning() {
         return this.gameIsRunning;
     }
+
     public void setGameIsRunning(Boolean gameIsRunning) {
         this.gameIsRunning = gameIsRunning;
     }
@@ -81,6 +83,7 @@ public class Adventure {
     public void setStepCounter(int stepCounter) {
         this.stepCounter = stepCounter;
     }
+
     public int getMAX_STEPS() {
         return this.MAX_STEPS;
     }
@@ -95,11 +98,11 @@ public class Adventure {
 
     void help() {
         System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. You've asked for advice " +
-            "on your journey and i shall provide you with your options.\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
+                "on your journey and i shall provide you with your options.\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
         System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
-        System.out.println("Make your choice to proceed, " + getPlayerName()+"!");
+        System.out.println("Make your choice to proceed, " + getPlayerName() + "!");
     }
 
     void exitGame() {
@@ -128,17 +131,19 @@ public class Adventure {
         System.out.println("Skriv kort de ting man kan");
 
         while (getGameIsRunning()) {
-            move();
-            if (getStepCounter() == getMAX_STEPS()) {
-                System.out.println("You died of exhaustion");
-                setGameIsRunning(false);
-            }
             if (getCurrentRoom() == room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
+            } else if (getStepCounter() == getMAX_STEPS()) {
+                System.out.println("You died of exhaustion");
+                setGameIsRunning(false);
+            } else {
+                move();
             }
         }
+
     }
+
     public void move() {
 
         String direction = choice();
@@ -180,11 +185,12 @@ public class Adventure {
         }
         roomActivity();
     }
+
     public void checkStepCounter() {
         if (getStepCounter() == 10 || getStepCounter() == 15 || getStepCounter() == 25)
-            if(getCurrentRoom() != room5) {
+            if (getCurrentRoom() != room5) {
                 System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted.");
-                System.out.println("You have " + (getMAX_STEPS() - getStepCounter()) + " steps left." );
+                System.out.println("You have " + (getMAX_STEPS() - getStepCounter()) + " steps left.");
             }
     }
 
@@ -265,10 +271,10 @@ public class Adventure {
                             System.out.println(getCurrentRoom().getDescription());
                         }
 
-                        }
                 }
             }
         }
+    }
 
     public static void main(String[] args) {
         Adventure run = new Adventure();
