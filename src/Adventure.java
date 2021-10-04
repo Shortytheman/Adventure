@@ -12,13 +12,16 @@ public class Adventure {
     Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
             "to the right or straight down to explore further..");
     Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches you with a deal");
-    Room room3 = new Room("room3", "Dette er rum 3");
-    Room room4 = new Room("room4", "Dette er rum 4");
-    Room room5 = new Room("room5", "Dette er rum 5");
-    Room room6 = new Room("room6", "Dette er rum 6");
-    Room room7 = new Room("room7", "Dette er rum 7");
-    Room room8 = new Room("room8", "Dette er rum 8");
-    Room room9 = new Room("room9", "Dette er rum 9");
+    Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet and bad quality soap, better get out quick, yuck..");
+    Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at them go.. don't you just want to\nstay here forever?");
+    Room room5 = new Room("THE ROOM OF WINNINGS!", "You did it man.. when no one believed in you, not even yourself, so how'd u get out? like\n" +
+        "really please tell me, i need to know for realz man.. congratz");
+    Room room6 = new Room("hall of bling bling", "The room is full of gold and glitters, but everytime your eyes gaze upon the treasures\n" +
+        "your butt starts to itch.. better keep moving before you make too much of a mess in your behind");
+    Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
+    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north here, i will kill\n a puppy from the room of " +
+        "distractions.. i PROMISE I WILL.. so don't do it! ");
+    Room room9 = new Room("you-are-probably-lost area", "ey man, you're probably lost, like so many of us.. better get moving");
 
     public String choice() {
         Scanner scanner = new Scanner(System.in);
@@ -137,7 +140,7 @@ public class Adventure {
             "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
 
         System.out.println("\n - Luckily your journey has been blessed by Merlin the great wizard and he wants you to succeed\n" +
-            "he has bestowed upon you - " + getPlayerName() + ", the gift of choice, and therefor you have the following choices: ");
+            "he has bestowed upon you the gift of choice, and therefore you have the following choices: ");
         System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo summon help: \"Help\"");
