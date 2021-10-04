@@ -1,16 +1,15 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Adventure {
 
     private Room currentRoom; // Rum 1-9.
     private String playerName;
-    boolean gameIsRunning = true;
-    String choice;
+    private boolean gameIsRunning = true;
+    private String choice;
 
-    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where i came in.. I'll have to take either the way " +
-            "to the right or straight down to explore..");
-    Room room2 = new Room("chance room", "here, only the lucky will persevere");
+    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
+            "to the right or straight down to explore further..");
+    Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches you with a deal");
     Room room3 = new Room("room3", "Dette er rum 3");
     Room room4 = new Room("room4", "Dette er rum 4");
     Room room5 = new Room("room5", "Dette er rum 5");
@@ -27,19 +26,21 @@ public class Adventure {
             if (choice.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting game");
                 exitGame();
-            } else if (choice.equalsIgnoreCase("help")) {
+            }else if (choice.equalsIgnoreCase("help")) {
                 System.out.print("\nSummoning a helping hand...");
                 help();
-            } else if (choice.equalsIgnoreCase("look")) {
+            }else if (choice.equalsIgnoreCase("look")) {
                 System.out.println("You're looking around in the room");
                 look();
-            } else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
-                    && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
-                    && !choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")) {
+            }else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
+                && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
+                && !choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")) {
                 System.out.println("Sorry i don't understand the input.. try again!");
             }
+
         }
-        while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east") && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
+        while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
+            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
 
         return choice;
     }
@@ -74,11 +75,12 @@ public class Adventure {
     }
 
     void help() {
-        System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. You've asked for advice on your journey and i shall provide you with your options.\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
+        System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. You've asked for advice " +
+            "on your journey and i shall provide you with your options.\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
         System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
-        System.out.println("Make your choice to proceed, " + getPlayerName());
+        System.out.println("Make your choice to proceed, " + getPlayerName()+"!");
     }
 
     void exitGame() {
@@ -90,22 +92,13 @@ public class Adventure {
 
         room1.setEast(room2);
         room1.setSouth(room4);
-        room2.setWest(room1);
         room2.setEast(room3);
-        room3.setWest(room2);
         room3.setSouth(room6);
-        room4.setNorth(room1);
         room4.setSouth(room7);
         room5.setSouth(room8);
-        room6.setNorth(room3);
         room6.setSouth(room9);
-        room7.setNorth(room4);
         room7.setEast(room8);
-        room8.setWest(room7);
-        room8.setNorth(room5);
         room8.setEast(room9);
-        room9.setNorth(room6);
-        room9.setWest(room8);
 
         setCurrentRoom(room1);
 
@@ -160,7 +153,7 @@ public class Adventure {
     public void roomActivity() {
         int result = 0;
         String roll;
-        if (!choice.equalsIgnoreCase("go north")) {
+        if (!choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go south")) {
             if (currentRoom.name.equalsIgnoreCase("chance room")) {
                 System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
                 Scanner scanner = new Scanner(System.in);
@@ -169,7 +162,7 @@ public class Adventure {
                     roll = scanner.nextLine();
                     if (roll.equalsIgnoreCase("roll")) {
                         result = diceThrow();
-                    } else
+                    }else
                         System.out.println("Wrong input, try again.");
                 }
                 while (!roll.equalsIgnoreCase("roll"));
@@ -178,7 +171,7 @@ public class Adventure {
                 switch (result) {
                     case 1:
                         System.out.println("You've managed to lose the entire game on a dice throw... u ded");
-                        gameIsRunning = false;
+                        exitGame();
                         break;
                     case 2:
                         System.out.println("What a shame! no reward for such an abysmal result");
@@ -194,7 +187,8 @@ public class Adventure {
                         break;
                     case 6:
                         System.out.println("You hit the jackpot, will now be teleported to a random location");
-                        double f = 1 + (Math.random() * 8);
+                        double f = 1 + (Math.random() * 7);
+                        System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
                         if ((int) f == 1) {
                             setCurrentRoom(room1);
                             System.out.println("You were teleported to the " + currentRoom.name);
