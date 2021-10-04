@@ -7,7 +7,7 @@ public class Adventure {
     private boolean gameIsRunning = true;
     private String choice;
     private int stepCounter;
-    private final int MAX_STEPS = 25;
+    private final int MAX_STEPS = 30;
 
     Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
             "to the right or straight down to explore further..");
@@ -181,7 +181,9 @@ public class Adventure {
     }
     public void checkStepCounter() {
         if (getStepCounter() == 10 || getStepCounter() == 15 || getStepCounter() == 25)
-            System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted");
+            if(getCurrentRoom() != room5) {
+                System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted");
+            }
     }
 
     public void roomActivity() {
