@@ -7,6 +7,7 @@ public class Adventure {
     private boolean gameIsRunning = true;
     private String choice;
     private int stepCounter;
+    private final int MAX_STEPS = 25;
 
     Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
             "to the right or straight down to explore further..");
@@ -79,6 +80,9 @@ public class Adventure {
     public void setStepCounter(int stepCounter) {
         this.stepCounter = stepCounter;
     }
+    public int getMAX_STEPS() {
+        return this.MAX_STEPS;
+    }
 
     public String toString() {
         return this.currentRoom + "";
@@ -98,7 +102,7 @@ public class Adventure {
     }
 
     void exitGame() {
-        System.exit(0);
+        setGameIsRunning(false);
     }
 
     public void run() {
@@ -119,12 +123,14 @@ public class Adventure {
         System.out.println("Velkommen til, Skriv din navn");
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
-        System.out.println("skoven har btug for en helt, godt du er her " + getPlayerName() + ", vi har brug for din hjælp.");
+        System.out.println("skoven har btug for en helt, godt du er her " + getPlayerName() +
+                ", vi har brug for din hjælp.");
         System.out.println("Skriv kort de ting man kan");
 
         while (getGameIsRunning()) {
             move();
-            if (getStepCounter() == 100 ) {
+            checkStepCounter();
+            if (getStepCounter() == getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
             }
@@ -134,7 +140,6 @@ public class Adventure {
             }
         }
     }
-
     public void move() {
 
         String direction = choice();
@@ -144,28 +149,36 @@ public class Adventure {
             System.out.println("Going north!");
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
+            stepCounter++;
         } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
             setCurrentRoom(getCurrentRoom().getSouth());
             System.out.println("Going south!");
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
+            stepCounter++;
 
         } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
             setCurrentRoom(getCurrentRoom().getWest());
             System.out.println("Going west!");
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
+            stepCounter++;
 
         } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
             setCurrentRoom(getCurrentRoom().getEast());
             System.out.println("Going east!");
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
+            stepCounter++;
         } else {
             System.out.println("Can't go that way");
         }
 
         roomActivity();
+    }
+    public void checkStepCounter() {
+        if (getStepCounter() == 10 || getStepCounter() == 15 || getStepCounter() == 25)
+            System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted");
     }
 
     public void roomActivity() {
@@ -253,6 +266,7 @@ public class Adventure {
     public static void main(String[] args) {
         Adventure run = new Adventure();
         run.run();
+
     }
 }
 
