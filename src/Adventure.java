@@ -76,7 +76,7 @@ public class Adventure {
     }
 
     void look() {
-        System.out.println(currentRoom.description);
+        System.out.println(getCurrentRoom().getDescription());
     }
 
     void help() {
@@ -118,7 +118,7 @@ public class Adventure {
         System.out.println("Velkommen til, Skriv din navn");
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
-        System.out.println("skoven har btug for en helt, godt du er her " + playerName + ", vi har brug for din hjælp.");
+        System.out.println("skoven har btug for en helt, godt du er her " + getPlayerName() + ", vi har brug for din hjælp.");
         System.out.println("Skriv kort de ting man kan");
 
         while (getGameIsRunning()) {
@@ -137,25 +137,25 @@ public class Adventure {
         if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
             setCurrentRoom(getCurrentRoom().getNorth());
             System.out.println("Going north!");
-            System.out.println("You have entered the " + getCurrentRoom().name);
-            System.out.println(getCurrentRoom().description);
+            System.out.println("You have entered the " + getCurrentRoom().getName());
+            System.out.println(getCurrentRoom().getDescription());
         } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
             setCurrentRoom(getCurrentRoom().getSouth());
             System.out.println("Going south!");
-            System.out.println("You have entered the " + getCurrentRoom().name);
-            System.out.println(getCurrentRoom().description);
+            System.out.println("You have entered the " + getCurrentRoom().getName());
+            System.out.println(getCurrentRoom().getDescription());
 
         } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
             setCurrentRoom(getCurrentRoom().getWest());
             System.out.println("Going west!");
-            System.out.println("You have entered the " + getCurrentRoom().name);
-            System.out.println(getCurrentRoom().description);
+            System.out.println("You have entered the " + getCurrentRoom().getName());
+            System.out.println(getCurrentRoom().getDescription());
 
         } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
             setCurrentRoom(getCurrentRoom().getEast());
             System.out.println("Going east!");
-            System.out.println("You have entered the " + getCurrentRoom().name);
-            System.out.println(getCurrentRoom().description);
+            System.out.println("You have entered the " + getCurrentRoom().getName());
+            System.out.println(getCurrentRoom().getDescription());
         } else {
             System.out.println("Can't go that way");
         }
@@ -167,7 +167,7 @@ public class Adventure {
         int result = 0;
         String roll;
         if (!choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go south")) {
-            if (currentRoom.name.equalsIgnoreCase("chance room")) {
+            if (getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
                 System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\" to roll the dice and i will reveal your reward");
                 Scanner scanner = new Scanner(System.in);
 
@@ -204,38 +204,38 @@ public class Adventure {
                         System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
                         if ((int) f == 1) {
                             setCurrentRoom(room1);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 2) {
                             setCurrentRoom(room3);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 3) {
                             setCurrentRoom(room4);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 4) {
                             setCurrentRoom(room6);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 5) {
                             setCurrentRoom(room7);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 6) {
                             setCurrentRoom(room8);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
                         if ((int) f == 7) {
                             setCurrentRoom(room9);
-                            System.out.println("You were teleported to the " + currentRoom.name);
-                            System.out.println(currentRoom.description);
+                            System.out.println("You were teleported to the " + getCurrentRoom().getName());
+                            System.out.println(getCurrentRoom().getDescription());
                         }
 
 
