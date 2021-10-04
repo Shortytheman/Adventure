@@ -14,14 +14,14 @@ public class Adventure {
     Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches you with a deal");
     Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet and bad quality soap, better get out quick, yuck..");
     Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at them go.. don't you just want to\nstay here forever?");
-    Room room5 = new Room("THE ROOM OF WINNINGS!", "You did it man.. when no one believed in you, not even yourself, so how'd u get out? like\n" +
+    Room room5 = new Room("THE ROOM OF WINNINGS!", "You did it dood.. when no one believed in you, not even yourself, so how'd u get out? like\n" +
         "really please tell me, i need to know for realz man.. congratz");
     Room room6 = new Room("hall of bling bling", "The room is full of gold and glitters, but everytime your eyes gaze upon the treasures\n" +
         "your butt starts to itch.. better keep moving before you make too much of a mess in your behind");
     Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
-    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north here, i will kill\n a puppy from the room of " +
+    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north here, i will kill\na puppy from the room of " +
         "distractions.. i PROMISE I WILL.. so don't do it! ");
-    Room room9 = new Room("you-are-probably-lost area", "ey " + getPlayerName() + ", you're probably lost, like so many of us.. better get moving");
+    Room room9 = new Room("you-are-probably-lost area", "ey man, you're probably lost, like so many of us.. better get moving");
 
     public String choice() {
         Scanner scanner = new Scanner(System.in);
@@ -126,16 +126,16 @@ public class Adventure {
 
         setCurrentRoom(room1);
 
-        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, sign the waiver of \"prolly ok\"\n");
+        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, sign the waiver of \"probably ok\"\n");
         System.out.print("""
-            |The waiver of prolly ok                                            |
+            |The waiver of "probably ok"                                        |
             |bla bla, something about having being trapped forever jada jada..  |
             |bla bla.. giving away your soul to the kingdom of mages jada jada..|
             |SIGN HERE:\s """);
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
 
-        System.out.println("\nMuahaha, you now belong to the cave.. Find your way out and your soul shall be saved..\nI will grant you.. hmm.." +
+        System.out.println("\nMuahaha, you now belong to the cave.. Find your way out and your soul shall be saved..\nI will grant you.. hmm.. " +
             "100 steps in my cave before exhaustion gets the best of you. - Waiiit..\"looking at the waiver\".. \nyour name is " + getPlayerName() + "?!.. for such " +
             "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
 
