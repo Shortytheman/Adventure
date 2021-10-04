@@ -6,6 +6,7 @@ public class Adventure {
     private String playerName;
     private boolean gameIsRunning = true;
     private String choice;
+    private int stepCounter;
 
     Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from where you came in.. you¨ll have to take either the way " +
             "to the right or straight down to explore further..");
@@ -71,6 +72,14 @@ public class Adventure {
         this.gameIsRunning = gameIsRunning;
     }
 
+    public int getStepCounter() {
+        return this.stepCounter;
+    }
+
+    public void setStepCounter(int stepCounter) {
+        this.stepCounter = stepCounter;
+    }
+
     public String toString() {
         return this.currentRoom + "";
     }
@@ -115,6 +124,10 @@ public class Adventure {
 
         while (getGameIsRunning()) {
             move();
+            if (getStepCounter() == 100 ) {
+                System.out.println("You died of exhaustion");
+                setGameIsRunning(false);
+            }
             if (getCurrentRoom() == room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
@@ -185,7 +198,9 @@ public class Adventure {
                         System.out.println("Right in the middle, you have received the right to yell \"Martin & Niklas rulez\"");
                         break;
                     case 4:
-                        System.out.println("Topend, you get a handshake from a real life leprechaun");
+                        System.out.println("Topend, you get a handshake from a real life leprechaun." +
+                                " You feel strangely refreshed");
+                        setStepCounter(0);
                         break;
                     case 5:
                         System.out.println("Good roll traveler, you receive a kiss from a faerie.");
