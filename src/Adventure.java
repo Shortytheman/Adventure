@@ -129,7 +129,6 @@ public class Adventure {
 
         while (getGameIsRunning()) {
             move();
-            checkStepCounter();
             if (getStepCounter() == getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
@@ -150,12 +149,14 @@ public class Adventure {
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
             stepCounter++;
+            checkStepCounter();
         } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
             setCurrentRoom(getCurrentRoom().getSouth());
             System.out.println("Going south!");
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
             stepCounter++;
+            checkStepCounter();
 
         } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
             setCurrentRoom(getCurrentRoom().getWest());
@@ -163,6 +164,7 @@ public class Adventure {
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
             stepCounter++;
+            checkStepCounter();
 
         } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
             setCurrentRoom(getCurrentRoom().getEast());
@@ -170,6 +172,7 @@ public class Adventure {
             System.out.println("You have entered the " + getCurrentRoom().getName());
             System.out.println(getCurrentRoom().getDescription());
             stepCounter++;
+            checkStepCounter();
         } else {
             System.out.println("Can't go that way");
         }
