@@ -182,7 +182,8 @@ public class Adventure {
     public void checkStepCounter() {
         if (getStepCounter() == 10 || getStepCounter() == 15 || getStepCounter() == 25)
             if(getCurrentRoom() != room5) {
-                System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted");
+                System.out.println("You have walked " + getStepCounter() + " steps and are getting exhausted.");
+                System.out.println("You have " + (getMAX_STEPS() - getStepCounter()) + " steps left." );
             }
     }
 
