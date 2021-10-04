@@ -21,7 +21,7 @@ public class Adventure {
     Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
     Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north here, i will kill\n a puppy from the room of " +
         "distractions.. i PROMISE I WILL.. so don't do it! ");
-    Room room9 = new Room("you-are-probably-lost area", "ey man, you're probably lost, like so many of us.. better get moving");
+    Room room9 = new Room("you-are-probably-lost area", "ey " + getPlayerName() + ", you're probably lost, like so many of us.. better get moving");
 
     public String choice() {
         Scanner scanner = new Scanner(System.in);
