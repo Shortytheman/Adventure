@@ -1,11 +1,11 @@
 public class Room {
-  private Room north = null;
-  private Room south = null;
-  private Room west = null;
-  private Room east = null;
+    private Room north = null;
+    private Room south = null;
+    private Room west = null;
+    private Room east = null;
 
-  String name;
-  String description;
+    private String name;
+    private String description;
 
   public Room(String name, String description) {
     this.name = name;
@@ -41,5 +41,19 @@ public class Room {
   public Room getEast(){
     return east;
   }
+
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getDescription(){
+        return this.description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 }
