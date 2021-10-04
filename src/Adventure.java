@@ -41,7 +41,8 @@ public class Adventure {
             }
         }
         while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
-            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
+            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north") &&
+                !choice.equalsIgnoreCase("exit")));
 
         return choice;
     }
@@ -173,7 +174,9 @@ public class Adventure {
             stepCounter++;
             checkStepCounter();
         } else {
-            System.out.println("Can't go that way");
+            if (!choice.equalsIgnoreCase("exit")) {
+                System.out.println("Can't go that way");
+            }
         }
         roomActivity();
     }
