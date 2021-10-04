@@ -41,7 +41,7 @@ public class Adventure {
             }
         }
         while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
-            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")));
+            && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("exit")));
 
         return choice;
     }
@@ -119,64 +119,85 @@ public class Adventure {
 
         setCurrentRoom(room1);
 
-        System.out.println("Velkommen til, Skriv din navn");
+        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, sign the waiver of \"prolly ok\"\n");
+        System.out.print("""
+            |The waiver of prolly ok                                            |
+            |bla bla, something about having being trapped forever jada jada..  |
+            |bla bla.. giving away your soul to the kingdom of mages jada jada..|
+            |SIGN HERE:\s """);
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
-        System.out.println("skoven har btug for en helt, godt du er her " + getPlayerName() +
-                ", vi har brug for din hjælp.");
-        System.out.println("Skriv kort de ting man kan");
+
+        System.out.println("\nMuahaha, you now belong to the cave.. Find your way out and your soul shall be saved..\nI will grant you.. hmm.." +
+            "100 steps in my cave before exhaustion gets the best of you. - Waiiit..\"looking at the waiver\".. \nyour name is " + getPlayerName() + "?!.. for such " +
+            "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
+
+        System.out.println("\n - Luckily your journey has been blessed by Merlin the great wizard and he wants you to succeed\n" +
+            "he has bestowed upon you - " + getPlayerName() + ", the gift of choice, and therefor you have the following choices: ");
+        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: \"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
+        System.out.println("________________________\nTo look around: \"Look\"");
+        System.out.println("________________________\nTo summon help: \"Help\"");
+        System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
+        System.out.println("Best make haste, " + getPlayerName()+", you don't have much time!");
+
 
         while (getGameIsRunning()) {
-            move();
             if (getStepCounter() == getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
             }
-            if (getCurrentRoom() == room5) {
+            else if (getCurrentRoom() == room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
+            } else{
+                move();
             }
         }
     }
     public void move() {
 
+
+
         String direction = choice();
 
-        if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
-            setCurrentRoom(getCurrentRoom().getNorth());
-            System.out.println("Going north!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-            checkStepCounter();
-        } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
-            setCurrentRoom(getCurrentRoom().getSouth());
-            System.out.println("Going south!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-            checkStepCounter();
+            if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
+                setCurrentRoom(getCurrentRoom().getNorth());
+                System.out.println("Going north!");
+                System.out.println("You have entered the " + getCurrentRoom().getName());
+                System.out.println(getCurrentRoom().getDescription());
+                stepCounter++;
+                checkStepCounter();
+            } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
+                setCurrentRoom(getCurrentRoom().getSouth());
+                System.out.println("Going south!");
+                System.out.println("You have entered the " + getCurrentRoom().getName());
+                System.out.println(getCurrentRoom().getDescription());
+                stepCounter++;
+                checkStepCounter();
 
-        } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
-            setCurrentRoom(getCurrentRoom().getWest());
-            System.out.println("Going west!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-            checkStepCounter();
+            } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
+                setCurrentRoom(getCurrentRoom().getWest());
+                System.out.println("Going west!");
+                System.out.println("You have entered the " + getCurrentRoom().getName());
+                System.out.println(getCurrentRoom().getDescription());
+                stepCounter++;
+                checkStepCounter();
 
-        } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
-            setCurrentRoom(getCurrentRoom().getEast());
-            System.out.println("Going east!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-            checkStepCounter();
-        } else {
-            System.out.println("Can't go that way");
+            } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
+                setCurrentRoom(getCurrentRoom().getEast());
+                System.out.println("Going east!");
+                System.out.println("You have entered the " + getCurrentRoom().getName());
+                System.out.println(getCurrentRoom().getDescription());
+                stepCounter++;
+                checkStepCounter();
+            } else {
+                if (!choice.equalsIgnoreCase("exit"))
+                System.out.println("Can't go that way");
+            }
+            roomActivity();
         }
-        roomActivity();
-    }
+
+
     public void checkStepCounter() {
         if (getStepCounter() == 10 || getStepCounter() == 15 || getStepCounter() == 25)
             if(getCurrentRoom() != room5) {
