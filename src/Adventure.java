@@ -106,7 +106,6 @@ public class Adventure {
     }
 
     public void run() {
-        // Kalde rummene noget andet senere og lave descriptions.
 
         room1.setEast(room2);
         room1.setSouth(room4);
@@ -176,7 +175,6 @@ public class Adventure {
         } else {
             System.out.println("Can't go that way");
         }
-
         roomActivity();
     }
     public void checkStepCounter() {
