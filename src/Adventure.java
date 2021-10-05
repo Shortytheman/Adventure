@@ -18,15 +18,11 @@ public class Adventure {
             " and bad quality soap, better get out quick, yuck..");
     Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at " +
             "them go.. don't you just want to\nstay here forever?");
-    Room room5 = new Room("ROOM OF WINNINGS!", "You did it man.. when no one believed in you" +
-            ", not even yourself, so how'd u get out? like\n" +
-        "really please tell me, i need to know for realz man.. congratz");
-    Room room6 = new Room("hall of bling bling", "The room is full of gold and glitters," +
-            " but everytime your eyes gaze upon the treasures\n" +
-        "your butt starts to itch.. better keep moving before you make too much of a mess in your behind");
+    Room room5 = new Room("ROOM OF WINNINGS!");
+    Room room6 = new Room("hall of bling bling");
     Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
     Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north " +
-            "here, i will kill\n a puppy from the room of " +
+            "here, i will kill\na puppy from the room of " +
         "distractions.. i PROMISE I WILL.. so don't do it! ");
     Room room9 = new Room("you-are-probably-lost area");
 
@@ -146,6 +142,15 @@ public class Adventure {
             |SIGN HERE:\s """);
         Scanner scanner = new Scanner(System.in);
         setPlayerName(scanner.nextLine());
+
+        room5.setDescription("You did it " + getPlayerName() + ".. when no one believed in you" +
+            ", not even yourself, so how'd u get out? like\n" +
+            "really please tell me, i need to know for realz man.. congratz");
+
+        room6.setDescription("The room is full of gold and glitters," +
+            " but everytime your eyes gaze upon the treasures\n" +
+            "your butt starts to itch.. better keep moving before " +
+            "you make too much of a mess in your behind mr. " + getPlayerName() + "!");
 
         room9.setDescription("ey " + getPlayerName() + ", you are probably lost, like so many of us... " +
                 "better get moving.");
