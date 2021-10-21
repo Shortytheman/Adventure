@@ -6,7 +6,6 @@ public class Adventure {
     private String playerName;
     private boolean gameIsRunning = true;
     private String choice;
-
     private Map gameMap = new Map();
     private Player player = new Player();
 
