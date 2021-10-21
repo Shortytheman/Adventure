@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class Parser {
     String choice;
-    Adventure adventure = new Adventure();
 
-    public String choice(Player player, Map gameMap) {
+    public String choice(Player player, Map gameMap, Adventure adventure) {
         Scanner scanner = new Scanner(System.in);
 
         do {

@@ -47,7 +47,7 @@ public class Player {
 
   public void move(Player player, Map gameMap, Adventure adventure) {
     Parser parser = new Parser();
-    direction = parser.choice(player, gameMap);
+    direction = parser.choice(player, gameMap, adventure);
 
     if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
       setCurrentRoom(getCurrentRoom().getNorth());
