@@ -4,7 +4,7 @@ public class Parser {
     String choice;
     Adventure adventure = new Adventure();
 
-    public String choice(Player player) {
+    public String choice(Player player, Map gameMap) {
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -28,6 +28,7 @@ public class Parser {
         while ((!choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go east")
                 && !choice.equalsIgnoreCase("go south") && !choice.equalsIgnoreCase("go north")
                 && !choice.equalsIgnoreCase("exit")));
+
 
         return choice;
     }

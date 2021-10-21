@@ -45,9 +45,9 @@ public class Player {
       }
   }
 
-  public void move(Player player) {
+  public void move(Player player, Map gameMap, Adventure adventure) {
     Parser parser = new Parser();
-    direction = parser.choice(player);
+    direction = parser.choice(player, gameMap);
 
     if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
       setCurrentRoom(getCurrentRoom().getNorth());
@@ -82,6 +82,10 @@ public class Player {
     } else {
       if (!direction.equalsIgnoreCase("exit"))
         System.out.println("Can't go that way");
+    }
+    if (player.getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
+      RoomActivity activity = new RoomActivity();
+      activity.diceGame(player,gameMap,adventure);
     }
 
   }

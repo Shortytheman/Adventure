@@ -4,12 +4,6 @@ public class Adventure {
 
     private boolean gameIsRunning = true;
     private String choice;
-    private Map gameMap = new Map();
-
-    public int diceThrow() {
-        double g = 1 + (Math.random() * 6);
-        return (int) g;
-    }
 
     public Boolean getGameIsRunning() {
         return this.gameIsRunning;
@@ -38,7 +32,7 @@ public class Adventure {
         setGameIsRunning(false);
     }
 
-    public void run(Player player) {
+    public void run(Player player, Map gameMap, Adventure adventure) {
         gameMap.makeConnections();
         player.setCurrentRoom(gameMap.room1);
 
@@ -80,7 +74,6 @@ public class Adventure {
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
-
         while (getGameIsRunning()) {
             if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
@@ -89,99 +82,16 @@ public class Adventure {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
             } else {
-                player.move(player);
-            }
-        }
-    }
-
-    public void roomActivity(Player player) {
-        int result = 0;
-        String roll;
-        if (!choice.equalsIgnoreCase("go north") && !choice.equalsIgnoreCase("go south")) {
-            if (player.getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
-                System.out.println("You have one chance at a reward, best of luck to you traveler. Write \"roll\"" +
-                        " to roll the dice and i will reveal your reward");
-                Scanner scanner = new Scanner(System.in);
-
-                do {
-                    roll = scanner.nextLine();
-                    if (roll.equalsIgnoreCase("roll")) {
-                        result = diceThrow();
-                    } else
-                        System.out.println("Wrong input, try again.");
-                }
-                while (!roll.equalsIgnoreCase("roll"));
-
-                System.out.println("you rolled: " + result);
-                switch (result) {
-                    case 1:
-                        System.out.println("You've managed to lose the entire game on a dice throw... u ded");
-                        setGameIsRunning(false);
-                        break;
-                    case 2:
-                        System.out.println("What a shame! no reward for such an abysmal result");
-                        break;
-                    case 3:
-                        System.out.println("Right in the middle, you have received the right to yell" +
-                                " \"Martin & Niklas rulez\"");
-                        break;
-                    case 4:
-                        System.out.println("Topend, you get a handshake from a real life leprechaun." +
-                                " You feel strangely refreshed");
-                        player.setStepCounter(0);
-                        break;
-                    case 5:
-                        System.out.println("Good roll traveler, you receive a kiss from a faerie.");
-                        break;
-                    case 6:
-                        System.out.println("You hit the jackpot, will now be teleported to a random location");
-                        double teleportResult = 1 + (Math.random() * 7);
-                        System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
-                        if ((int) teleportResult == 1) {
-                            player.setCurrentRoom(gameMap.room1);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 2) {
-                            player.setCurrentRoom(gameMap.room3);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 3) {
-                            player.setCurrentRoom(gameMap.room4);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 4) {
-                            player.setCurrentRoom(gameMap.room6);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 5) {
-                            player.setCurrentRoom(gameMap.room7);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 6) {
-                            player.setCurrentRoom(gameMap.room8);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-                        if ((int) teleportResult == 7) {
-                            player.setCurrentRoom(gameMap.room9);
-                            System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                            System.out.println(player.getCurrentRoom().getDescription());
-                        }
-
-                }
+                player.move(player,gameMap,adventure);
             }
         }
     }
 
     public static void main(String[] args) {
-        Adventure run = new Adventure();
+        Adventure adventure = new Adventure();
         Player player = new Player();
-        run.run(player);
+        Map gameMap = new Map();
+        adventure.run(player,gameMap,adventure);
     }
 }
 
