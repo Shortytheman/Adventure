@@ -4,7 +4,7 @@ public class Parser {
     String choice;
     Adventure adventure = new Adventure();
 
-    public String choice() {
+    public String choice(Player player) {
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -14,10 +14,10 @@ public class Parser {
                 adventure.exitGame();
             } else if (choice.equalsIgnoreCase("help")) {
                 System.out.print("\nSummoning a helping hand...");
-                adventure.help();
+                adventure.help(player);
             } else if (choice.equalsIgnoreCase("look")) {
                 System.out.println("You're looking around in the room");
-                adventure.look();
+                adventure.look(player);
             } else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
                     && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
                     && !choice.equalsIgnoreCase("go north") &&
