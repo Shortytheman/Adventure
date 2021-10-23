@@ -32,7 +32,7 @@ public class Adventure {
         setGameIsRunning(false);
     }
 
-    public void run(Player player, Map gameMap, Adventure adventure) {
+    public void run() {
         gameMap.makeConnections();
         player.setCurrentRoom(gameMap.room1);
 
@@ -81,17 +81,50 @@ public class Adventure {
             } else if (player.getStepCounter() == player.getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
+            }
+              else if (player.getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
+                    RoomActivity activity = new RoomActivity();
+                    activity.diceGame();
+
             } else {
-                player.move(player,gameMap,adventure);
+               // Al resten af interaktiviteten!
+                        choice = scanner.nextLine();
+                        if (choice.equalsIgnoreCase("exit")) {
+                            System.out.println("Exiting game");
+                            exitGame();
+                        } else if (choice.equalsIgnoreCase("help")) {
+                            System.out.print("\nSummoning a helping hand...");
+                             help(player);
+                        } else if (choice.equalsIgnoreCase("look")) {
+                            System.out.println("You're looking around in the room");
+                             look(player);
+                        } else if (choice.equalsIgnoreCase("go east")
+                            || choice.equalsIgnoreCase("go north")
+                            || choice.equalsIgnoreCase("go west")
+                            || choice.equalsIgnoreCase("go south")) {
+                        player.move(choice);
+                        }
+                else {
+                    System.out.println("Sorry i don't understand the input.. try again!");
+                }
             }
         }
+
+
     }
+
+    private Player player;
+    private Map gameMap;
+
+    public Adventure() {
+        player = new Player();
+        gameMap = new Map();
+    }
+
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
-        Player player = new Player();
-        Map gameMap = new Map();
-        adventure.run(player,gameMap,adventure);
+        adventure.run();
     }
 }
 

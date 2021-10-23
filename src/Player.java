@@ -45,18 +45,16 @@ public class Player {
       }
   }
 
-  public void move(Player player, Map gameMap, Adventure adventure) {
-    Parser parser = new Parser();
-    direction = parser.choice(player, gameMap, adventure);
+  public void move(String choice) {
 
-    if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
+    if (choice.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
       setCurrentRoom(getCurrentRoom().getNorth());
       System.out.println("Going north!");
       System.out.println("You have entered the " + getCurrentRoom().getName());
       System.out.println(getCurrentRoom().getDescription());
       stepCounter++;
       checkStepCounter();
-    } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
+    } else if (choice.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
       setCurrentRoom(getCurrentRoom().getSouth());
       System.out.println("Going south!");
       System.out.println("You have entered the " + getCurrentRoom().getName());
@@ -64,7 +62,7 @@ public class Player {
       stepCounter++;
       checkStepCounter();
 
-    } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
+    } else if (choice.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
       setCurrentRoom(getCurrentRoom().getWest());
       System.out.println("Going west!");
       System.out.println("You have entered the " + getCurrentRoom().getName());
@@ -72,7 +70,7 @@ public class Player {
       stepCounter++;
       checkStepCounter();
 
-    } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
+    } else if (choice.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
       setCurrentRoom(getCurrentRoom().getEast());
       System.out.println("Going east!");
       System.out.println("You have entered the " + getCurrentRoom().getName());
@@ -80,13 +78,8 @@ public class Player {
       stepCounter++;
       checkStepCounter();
     } else {
-      if (!direction.equalsIgnoreCase("exit"))
+      if (!choice.equalsIgnoreCase("exit"))
         System.out.println("Can't go that way");
     }
-    if (player.getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
-      RoomActivity activity = new RoomActivity();
-      activity.diceGame(player,gameMap,adventure);
-    }
-
   }
 }
