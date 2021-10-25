@@ -44,15 +44,19 @@ public class RoomActivity {
             System.out.println("You hit the jackpot and will now be teleported to a random location");
             double teleportResult = 1 + (Math.random() * 7);
             System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
-            if ((int) teleportResult == 1) {
-              player.setCurrentRoom(gameMap.room1);
-              System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-              System.out.println(player.getCurrentRoom().getDescription());
+            switch ((int) teleportResult) {
+              case 1 -> {
+                player.setCurrentRoom(gameMap.room1);
+                System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
+                System.out.println(player.getCurrentRoom().getDescription());
+              }
             }
-            if ((int) teleportResult == 2) {
-              player.setCurrentRoom(gameMap.room3);
-              System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-              System.out.println(player.getCurrentRoom().getDescription());
+            switch ((int) teleportResult) {
+              case 2 -> {
+                player.setCurrentRoom(gameMap.room3);
+                System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
+                System.out.println(player.getCurrentRoom().getDescription());
+              }
             }
             if ((int) teleportResult == 3) {
               player.setCurrentRoom(gameMap.room4);

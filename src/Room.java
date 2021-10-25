@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 public class Room {
     private Room north = null;
     private Room south = null;
     private Room west = null;
     private Room east = null;
+    private ArrayList<Item> items = new ArrayList<>();
 
     private String name;
     private String description;
@@ -57,6 +60,35 @@ public class Room {
     public void setDescription(String description) {
         this.description = description;
     }
+    public ArrayList<Item> getItems() {
+      return this.items;
 
 
+    }
+    public Item findItem(String itemName) {
+        Item item = new Item();
+        boolean itemFound = false;
+        while (!itemFound) {
+            for (int i = 0; i < items.size(); i++) {
+                if (!itemFound) {
+                    if (items.get(i).getShortName().equalsIgnoreCase(itemName)) {
+                        System.out.println("kunne godt finde item");
+                        item = items.get(i);
+                        itemFound = true;
+                      //  return item;
+                    } else {
+                        System.out.println("kunne ikke finde item");
+                        item = null;
+                      //  return null;
+                    }
+                }
+            }
+
+        }
+        return item;
+    }
 }
+
+
+
+

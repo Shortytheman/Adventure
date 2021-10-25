@@ -1,6 +1,13 @@
 import java.util.Scanner;
 
 public class Adventure {
+    Player player;
+    Map gameMap;
+
+    public Adventure() {
+        player = new Player();
+        gameMap = new Map();
+    }
 
     private boolean gameIsRunning = true;
     private String choice;
@@ -13,11 +20,14 @@ public class Adventure {
         this.gameIsRunning = gameIsRunning;
     }
 
-    void look(Player player) {
-        System.out.println(player.getCurrentRoom().getDescription());
+    void look() {
+        System.out.println("You're looking around in the room...");
+        getCurrentRoomDescription();
+
+
     }
 
-    void help(Player player) {
+    void help() {
         System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. " +
                 "You've asked for advice " + "on your journey and i shall provide you with your options." +
                 "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
@@ -32,7 +42,7 @@ public class Adventure {
         setGameIsRunning(false);
     }
 
-    public void run(Player player, Map gameMap, Adventure adventure) {
+    public void run() {
         gameMap.makeConnections();
         player.setCurrentRoom(gameMap.room1);
 
@@ -74,6 +84,8 @@ public class Adventure {
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
+        System.out.println(gameMap.getRooms().size());
+
         while (getGameIsRunning()) {
             if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
@@ -82,16 +94,69 @@ public class Adventure {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
             } else {
-                player.move(player,gameMap,adventure);
+                choice();
             }
         }
     }
 
+    public void choice() {
+        Scanner scanner = new Scanner(System.in);
+        choice = scanner.nextLine();
+
+        if (choice.equalsIgnoreCase("exit")) {
+            System.out.println("Exiting game");
+            exitGame();
+        } else if (choice.equalsIgnoreCase("help")) {
+            System.out.print("\nSummoning a helping hand...");
+            help();
+        } else if (choice.equalsIgnoreCase("look")) {
+            look();
+        } else if (choice.equalsIgnoreCase("take lamp")
+                || choice.equalsIgnoreCase("take pepsi max")
+                || choice.equalsIgnoreCase("take shovel")
+                || choice.equalsIgnoreCase("take cup")) {
+            if (choice.substring(0, 4).equalsIgnoreCase("take")) {
+                if (player.getCurrentRoom().findItem(choice.substring(5)) != null) {
+                    System.out.println("der er et item named " + choice.substring(5));
+                }
+                else {
+                    System.out.println("There is no such thing as a " + choice.substring(5) + " in the room.");
+                }
+            }
+        } else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
+                && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
+                && !choice.equalsIgnoreCase("go north") &&
+                !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")) {
+            System.out.println("Sorry i don't understand the input.. try again!");
+        } else {
+            player.move(choice);
+            checkStepCounter();
+        }
+    }
+
+    public void checkStepCounter() {
+        if (player.getStepCounter() == 10 || player.getStepCounter() == 15 || player.getStepCounter() == 25)
+            if (player.getCurrentRoom() != gameMap.room5) {
+                System.out.println("You have walked " + player.getStepCounter() + " steps and are getting exhausted.");
+                System.out.println("You have " + (player.getMAX_STEPS() - player.getStepCounter()) + " steps left.");
+            }
+    }
+
+    public void getCurrentRoomDescription() {
+        System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
+        for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
+            if (i + 1 == player.getCurrentRoomItems().size()) {
+                System.out.println("and " + player.getCurrentRoomItems().get(i).getLongName() + ".");
+            } else {
+                System.out.print(player.getCurrentRoomItems().get(i).getLongName() + ", ");
+
+            }
+    }
+
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
-        Player player = new Player();
-        Map gameMap = new Map();
-        adventure.run(player,gameMap,adventure);
-    }
-}
+        adventure.run();
 
+    }
+
+}
