@@ -2,7 +2,6 @@ public class Player {
   private int stepCounter;
   private final int MAX_STEPS = 30;
   private Map map = new Map();
-  String direction;
   private Room currentRoom;
   private String playerName;
 

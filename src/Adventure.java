@@ -4,6 +4,8 @@ public class Adventure {
 
     private boolean gameIsRunning = true;
     private String choice;
+    Item item = new Item();
+    Inventory inventory = new Inventory();
 
     public Boolean getGameIsRunning() {
         return this.gameIsRunning;
@@ -19,7 +21,7 @@ public class Adventure {
 
     void help(Player player) {
         System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. " +
-                "You've asked for advice " + "on your journey and i shall provide you with your options." +
+                "You've asked for advice " + "on your journey -- and so, i shall provide!." +
                 "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
         System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
                 "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
@@ -75,17 +77,13 @@ public class Adventure {
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
         while (getGameIsRunning()) {
+
             if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
             } else if (player.getStepCounter() == player.getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
-            }
-              else if (player.getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
-                    RoomActivity activity = new RoomActivity();
-                    activity.diceGame();
-
             } else {
                // Al resten af interaktiviteten!
                         choice = scanner.nextLine();
@@ -104,17 +102,23 @@ public class Adventure {
                             || choice.equalsIgnoreCase("go south")) {
                         player.move(choice);
                         }
+                        else if (choice.equalsIgnoreCase("inventory")
+                            || choice.equalsIgnoreCase("inven")
+                            || choice.equalsIgnoreCase("inv")){
+                            inventory.printCurrentInventory();
+                        }
+                        else if (choice.equalsIgnoreCase("add item")) {
+                            inventory.addItem(item.makeAnItem());
+                        }
                 else {
                     System.out.println("Sorry i don't understand the input.. try again!");
                 }
             }
         }
-
-
     }
 
-    private Player player;
-    private Map gameMap;
+     Player player;
+     Map gameMap;
 
     public Adventure() {
         player = new Player();

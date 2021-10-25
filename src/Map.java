@@ -1,4 +1,16 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Map {
+  ArrayList <Item> room1Items = new ArrayList<>();
+  ArrayList <Item> room2Items = new ArrayList<>();
+  ArrayList <Item> room3Items = new ArrayList<>();
+  ArrayList <Item> room4Items = new ArrayList<>();
+  ArrayList <Item> room5Items = new ArrayList<>();
+  ArrayList <Item> room6Items = new ArrayList<>();
+  ArrayList <Item> room7Items = new ArrayList<>();
+  ArrayList <Item> room8Items = new ArrayList<>();
+  ArrayList <Item> room9Items = new ArrayList<>();
 
   Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
       " where you came in.. you¨ll have to take either the way " +
@@ -18,7 +30,6 @@ public class Map {
   Room room9 = new Room("you-are-probably-lost area");
 
   public void makeConnections(){
-
     room1.setEast(room2);
     room1.setSouth(room4);
     room2.setEast(room3);
@@ -29,4 +40,38 @@ public class Map {
     room7.setEast(room8);
     room8.setEast(room9);
   }
+
+  public void addItems(){
+    Item item = new Item();
+    Random random = new Random();
+    int f = random.nextInt(8)+1;
+    int g = random.nextInt(4)+1;
+    int m = 0;
+    do {
+      switch (f) {
+        case 1:
+          room1Items.add(item.makeAnItem());
+        case 2:
+          room2Items.add(item.makeAnItem());
+        case 3:
+          room3Items.add(item.makeAnItem());
+        case 4:
+          room4Items.add(item.makeAnItem());
+        case 5:
+          room5Items.add(item.makeAnItem());
+        case 6:
+          room6Items.add(item.makeAnItem());
+        case 7:
+          room7Items.add(item.makeAnItem());
+        case 8:
+          room8Items.add(item.makeAnItem());
+        case 9:
+          room9Items.add(item.makeAnItem());
+      }
+    m++;
+    }
+    while (m < g);
+
+  }
+
 }
