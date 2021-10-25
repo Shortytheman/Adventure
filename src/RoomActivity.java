@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+/*
 public class RoomActivity {
 
   public void diceGame() {
@@ -93,3 +93,5 @@ public class RoomActivity {
   }
 
 }
+
+ */

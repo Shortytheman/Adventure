@@ -75,11 +75,11 @@ public class Room {
                         System.out.println("kunne godt finde item");
                         item = items.get(i);
                         itemFound = true;
-                      //  return item;
+
                     } else {
                         System.out.println("kunne ikke finde item");
                         item = null;
-                      //  return null;
+
                     }
                 }
             }
