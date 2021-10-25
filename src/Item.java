@@ -2,28 +2,23 @@
 import java.util.*;
 
 public class Item {
-  ArrayList <Item> items = new ArrayList<>();
-    private String longName;
-    private String shortName;
+  String name;
+  String prefix;
+  String suffix;
 
-    public Item(String shortName, String longName) {
-        this.shortName = shortName;
-        this. longName = longName;
+ // Item(String name, String prefix, String suffix){
 
-
-    }
-    public String getShortName() {
-        return this.shortName;
-    }
-    public String getLongName() {
-        return this.longName;
-    }
-
-  Item(String items, String prefix, String suffix){
+  public Item(String name) {
+    this.name = name;
+    this.prefix = itemPrefix();
+    this.suffix = itemSuffix();
 
   }
 
   Item(){
+    this.name = itemNames();
+    this.prefix = itemPrefix();
+    this.suffix = itemSuffix();
   }
 
   public String itemNames(){
@@ -43,7 +38,7 @@ public class Item {
     itemPrefix.add("shiny");
     itemPrefix.add("damn good looking");
     itemPrefix.add("worn out");
-    itemPrefix.add("some giddi'up looking");
+    itemPrefix.add("giddi'up looking");
     Random rand = new Random();
     int random = rand.nextInt(itemPrefix.size());
     return itemPrefix.get(random);
@@ -51,7 +46,7 @@ public class Item {
 
   public String itemSuffix(){
     ArrayList<String > itemSuffix = new ArrayList<>();
-    itemSuffix.add("with some dust on it..");
+    itemSuffix.add("with some dust on it");
     itemSuffix.add("that has seen better days");
     itemSuffix.add("that looks good to me");
     itemSuffix.add("i wonder what i can use this for");
@@ -60,9 +55,12 @@ public class Item {
     int random = rand.nextInt(itemSuffix.size());
     return itemSuffix.get(random);
   }
-
-  public Item makeAnItem(){
-    return new Item(itemNames(), itemPrefix(), itemSuffix());
+  public String getName() {
+    return this.name;
+  }
+  public String toString() {
+    return prefix + " " + name + " " + suffix;
   }
 
-}
+  }
+

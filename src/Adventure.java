@@ -10,7 +10,7 @@ public class Adventure {
     }
 
     private boolean gameIsRunning = true;
-    private String choice;
+    private String input;
 
     public Boolean getGameIsRunning() {
         return this.gameIsRunning;
@@ -100,35 +100,30 @@ public class Adventure {
 
     public void choice() {
         Scanner scanner = new Scanner(System.in);
-        choice = scanner.nextLine();
+        input = scanner.nextLine();
 
-        if (choice.equalsIgnoreCase("exit")) {
+        if (input.equalsIgnoreCase("exit")) {
             System.out.println("Exiting game");
             exitGame();
-        } else if (choice.equalsIgnoreCase("help")) {
+        } else if (input.equalsIgnoreCase("help")) {
             System.out.print("\nSummoning a helping hand...");
             help();
-        } else if (choice.equalsIgnoreCase("look")) {
+        } else if (input.equalsIgnoreCase("look")) {
             look();
-        } else if (choice.equalsIgnoreCase("take lamp")
-                || choice.equalsIgnoreCase("take pepsi max")
-                || choice.equalsIgnoreCase("take shovel")
-                || choice.equalsIgnoreCase("take cup")) {
-            if (choice.substring(0, 4).equalsIgnoreCase("take")) {
-                if (player.getCurrentRoom().findItem(choice.substring(5)) != null) {
-                    System.out.println("der er et item named " + choice.substring(5));
-                }
-                else {
-                    System.out.println("There is no such thing as a " + choice.substring(5) + " in the room.");
-                }
+        } else if (input.contains("take")) {
+            if (player.getCurrentRoom().findItem(input.substring(5)) != null) {
+                player.takeItem(player.findItem(input.substring(5)));
+                System.out.println("der er et item named " + input.substring(5));
+            } else {
+                System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
-        } else if (!choice.equalsIgnoreCase("look") && !choice.equalsIgnoreCase("exit")
-                && !choice.equalsIgnoreCase("help") && !choice.equalsIgnoreCase("go east")
-                && !choice.equalsIgnoreCase("go north") &&
-                !choice.equalsIgnoreCase("go west") && !choice.equalsIgnoreCase("go south")) {
+        } else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
+                && !input.equalsIgnoreCase("help") && !input.equalsIgnoreCase("go east")
+                && !input.equalsIgnoreCase("go north") &&
+                !input.equalsIgnoreCase("go west") && !input.equalsIgnoreCase("go south")) {
             System.out.println("Sorry i don't understand the input.. try again!");
         } else {
-            player.move(choice);
+            player.move(input);
             checkStepCounter();
         }
     }
@@ -144,18 +139,20 @@ public class Adventure {
     public void getCurrentRoomDescription() {
         System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
         for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
-            if (i + 1 == player.getCurrentRoomItems().size()) {
-                System.out.println("and " + player.getCurrentRoomItems().get(i).getLongName() + ".");
+            if (1 == player.getCurrentRoomItems().size())
+                System.out.println("a " + player.getCurrentRoomItems().get(i).toString() + ".");
+            else if (i + 1 == player.getCurrentRoomItems().size()) {
+                System.out.println("and " + player.getCurrentRoomItems().get(i).toString() + ".");
             } else {
-                System.out.print(player.getCurrentRoomItems().get(i).getLongName() + ", ");
+                System.out.print(player.getCurrentRoomItems().get(i).toString() + ", ");
 
             }
     }
 
-
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
         adventure.run();
+
     }
 }
 

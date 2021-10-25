@@ -2,15 +2,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
-  ArrayList <Item> room1Items = new ArrayList<>();
-  ArrayList <Item> room2Items = new ArrayList<>();
-  ArrayList <Item> room3Items = new ArrayList<>();
-  ArrayList <Item> room4Items = new ArrayList<>();
-  ArrayList <Item> room5Items = new ArrayList<>();
-  ArrayList <Item> room6Items = new ArrayList<>();
-  ArrayList <Item> room7Items = new ArrayList<>();
-  ArrayList <Item> room8Items = new ArrayList<>();
-  ArrayList <Item> room9Items = new ArrayList<>();
 
   Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
       " where you came in.. you¨ll have to take either the way " +
@@ -39,8 +30,12 @@ public class Map {
     room6.setSouth(room9);
     room7.setEast(room8);
     room8.setEast(room9);
-  }
 
+    room1.getItems().add(new Item());
+    room1.getItems().add(new Item());
+    room1.getItems().add(new Item());
+  }
+/*
   public void addItems(){
     Item item = new Item();
     Random random = new Random();
@@ -73,5 +68,7 @@ public class Map {
     while (m < g);
 
   }
+
+ */
 
 }

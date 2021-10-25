@@ -9,7 +9,6 @@ public class Room {
 
     private String name;
     private String description;
-    private ArrayList <Item> items = new ArrayList<>();
 
   public Room(String name, String description) {
     this.name = name;
@@ -67,28 +66,22 @@ public class Room {
 
     }
     public Item findItem(String itemName) {
-        Item item = new Item();
-        boolean itemFound = false;
-        while (!itemFound) {
+        Item item;
             for (int i = 0; i < items.size(); i++) {
-                if (!itemFound) {
-                    if (items.get(i).getShortName().equalsIgnoreCase(itemName)) {
+                    if (items.get(i).getName().equalsIgnoreCase(itemName)
+                            || items.get(i).toString().equalsIgnoreCase(itemName)) {
                         System.out.println("kunne godt finde item");
                         item = items.get(i);
-                        itemFound = true;
-
-                    } else {
-                        System.out.println("kunne ikke finde item");
-                        item = null;
-
+                        return item;
                     }
                 }
+            return null;
             }
 
         }
-        return item;
-    }
-}
+
+
+
 
 
 

@@ -47,6 +47,26 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+    public void takeItem(Item item) {
+        inventory.add(item);
+        System.out.println("item added");
+    }
+    public Item findItem(String itemName) {
+        Item item;
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getName().equalsIgnoreCase(itemName)
+                    || inventory.get(i).toString().equalsIgnoreCase(itemName)) {
+                System.out.println("kunne godt finde item");
+                item = inventory.get(i);
+                return item;
+            }
+        }
+        return null;
+    }
+
+
+
+
 
     public void move(String direction) {
 
