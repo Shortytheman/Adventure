@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class RoomActivity {
 
-  public void diceGame(Player player, Map gameMap,Adventure adventure) {
+  public void diceGame() {
     int result = 0;
     String roll;
 

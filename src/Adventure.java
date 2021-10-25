@@ -84,8 +84,6 @@ public class Adventure {
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
-        System.out.println(gameMap.getRooms().size());
-
         while (getGameIsRunning()) {
             if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
@@ -156,7 +154,6 @@ public class Adventure {
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
         adventure.run();
-
     }
-
 }
+
