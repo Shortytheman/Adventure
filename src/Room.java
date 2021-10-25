@@ -9,6 +9,7 @@ public class Room {
 
     private String name;
     private String description;
+    private ArrayList <Item> items = new ArrayList<>();
 
   public Room(String name, String description) {
     this.name = name;

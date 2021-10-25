@@ -29,7 +29,7 @@ public class Adventure {
 
     void help() {
         System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. " +
-                "You've asked for advice " + "on your journey and i shall provide you with your options." +
+                "You've asked for advice " + "on your journey -- and so, i shall provide!." +
                 "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
         System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
                 "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
@@ -85,6 +85,7 @@ public class Adventure {
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
         while (getGameIsRunning()) {
+
             if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
@@ -150,6 +151,7 @@ public class Adventure {
 
             }
     }
+
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();

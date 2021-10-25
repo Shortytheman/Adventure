@@ -1,44 +1,77 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Map {
+  ArrayList <Item> room1Items = new ArrayList<>();
+  ArrayList <Item> room2Items = new ArrayList<>();
+  ArrayList <Item> room3Items = new ArrayList<>();
+  ArrayList <Item> room4Items = new ArrayList<>();
+  ArrayList <Item> room5Items = new ArrayList<>();
+  ArrayList <Item> room6Items = new ArrayList<>();
+  ArrayList <Item> room7Items = new ArrayList<>();
+  ArrayList <Item> room8Items = new ArrayList<>();
+  ArrayList <Item> room9Items = new ArrayList<>();
 
-    private ArrayList<Room> rooms = new ArrayList<>();
+  Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
+      " where you came in.. you¨ll have to take either the way " +
+      "to the right or straight down to explore further..");
+  Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches " +
+      "you with a deal");
+  Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet" +
+      " and bad quality soap, better get out quick, yuck..");
+  Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at " +
+      "them go.. don't you just want to\nstay here forever?");
+  Room room5 = new Room("ROOM OF WINNINGS!");
+  Room room6 = new Room("hall of bling bling");
+  Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
+  Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north " +
+      "here, i will kill\na puppy from the room of " +
+      "distractions.. i PROMISE I WILL.. so don't do it! ");
+  Room room9 = new Room("you-are-probably-lost area");
 
-    Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
-            " where you came in.. you¨ll have to take either the way " +
-            "to the right or straight down to explore further..");
-    Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches " +
-            "you with a deal");
-    Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet" +
-            " and bad quality soap, better get out quick, yuck..");
-    Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at " +
-            "them go.. don't you just want to\nstay here forever?");
-    Room room5 = new Room("ROOM OF WINNINGS!");
-    Room room6 = new Room("hall of bling bling");
-    Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
-    Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north " +
-            "here, i will kill\na puppy from the room of " +
-            "distractions.. i PROMISE I WILL.. so don't do it! ");
-    Room room9 = new Room("you-are-probably-lost area");
+  public void makeConnections(){
+    room1.setEast(room2);
+    room1.setSouth(room4);
+    room2.setEast(room3);
+    room3.setSouth(room6);
+    room4.setSouth(room7);
+    room5.setSouth(room8);
+    room6.setSouth(room9);
+    room7.setEast(room8);
+    room8.setEast(room9);
+  }
 
-
-    public void makeConnections() {
-            room1.setEast(room2);
-            room1.setSouth(room4);
-            room2.setEast(room3);
-            room3.setSouth(room6);
-            room4.setSouth(room7);
-            room5.setSouth(room8);
-            room6.setSouth(room9);
-            room7.setEast(room8);
-            room8.setEast(room9);
-            room1.getItems().add(new Item("shovel", "an old and rusty shovel"));
-            room3.getItems().add(new Item("cup", "a small"));
-            room1.getItems().add(new Item("Pepsi Max", "an expired Pepsi Max"));
-            room1.getItems().add(new Item("lamp", "a shiny brass lamp"));
-
-        }
-        public ArrayList<Room> getRooms () {
-            return this.rooms;
-        }
+  public void addItems(){
+    Item item = new Item();
+    Random random = new Random();
+    int f = random.nextInt(8)+1;
+    int g = random.nextInt(4)+1;
+    int m = 0;
+    do {
+      switch (f) {
+        case 1:
+          room1Items.add(item.makeAnItem());
+        case 2:
+          room2Items.add(item.makeAnItem());
+        case 3:
+          room3Items.add(item.makeAnItem());
+        case 4:
+          room4Items.add(item.makeAnItem());
+        case 5:
+          room5Items.add(item.makeAnItem());
+        case 6:
+          room6Items.add(item.makeAnItem());
+        case 7:
+          room7Items.add(item.makeAnItem());
+        case 8:
+          room8Items.add(item.makeAnItem());
+        case 9:
+          room9Items.add(item.makeAnItem());
+      }
+    m++;
     }
+    while (m < g);
+
+  }
+
+}

@@ -1,8 +1,10 @@
 import java.util.Scanner;
-/*
-public class RoomActivity {
+
+/* public class RoomActivity {
 
   public void diceGame() {
+
+    if (currentRoom.getName().equalsIgnoreCase("chance room")) {
     int result = 0;
     String roll;
 
@@ -23,7 +25,7 @@ public class RoomActivity {
         switch (result) {
           case 1:
             System.out.println("You've managed to lose the entire game on a dice throw... u ded");
-            adventure.exitGame();
+            System.exit(0);
             break;
           case 2:
             System.out.println("What a shame! no reward for such an abysmal result");
@@ -44,46 +46,42 @@ public class RoomActivity {
             System.out.println("You hit the jackpot and will now be teleported to a random location");
             double teleportResult = 1 + (Math.random() * 7);
             System.out.println("( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
-            switch ((int) teleportResult) {
-              case 1 -> {
-                player.setCurrentRoom(gameMap.room1);
-                System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                System.out.println(player.getCurrentRoom().getDescription());
-              }
+            if ((int) teleportResult == 1) {
+              player.setCurrentRoom(player.setCurrentRoom(player.room1));
+              System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
+              System.out.println(player.getCurrentRoom().getDescription());
             }
-            switch ((int) teleportResult) {
-              case 2 -> {
-                player.setCurrentRoom(gameMap.room3);
-                System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
-                System.out.println(player.getCurrentRoom().getDescription());
-              }
+            if ((int) teleportResult == 2) {
+              adventure.getPlayer().setCurrentRoom(gameMap.room3);
+              System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
+              System.out.println(player.getCurrentRoom().getDescription());
             }
             if ((int) teleportResult == 3) {
-              player.setCurrentRoom(gameMap.room4);
+              adventure.getPlayer().setCurrentRoom(gameMap.room4);
               System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
               System.out.println(player.getCurrentRoom().getDescription());
             }
             if ((int) teleportResult == 4) {
-              player.setCurrentRoom(gameMap.room6);
+              adventure.getPlayer().setCurrentRoom(gameMap.room6);
               System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
               System.out.println(player.getCurrentRoom().getDescription());
             }
             if ((int) teleportResult == 5) {
-              player.setCurrentRoom(gameMap.room7);
+              adventure.getPlayer().setCurrentRoom(gameMap.room7);
               System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
               System.out.println(player.getCurrentRoom().getDescription());
             }
             if ((int) teleportResult == 6) {
-              player.setCurrentRoom(gameMap.room8);
+              adventure.getPlayer().setCurrentRoom(gameMap.room8);
               System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
               System.out.println(player.getCurrentRoom().getDescription());
             }
             if ((int) teleportResult == 7) {
-              player.setCurrentRoom(gameMap.room9);
+              adventure.player.setCurrentRoom(gameMap.room9);
               System.out.println("You were teleported to the " + player.getCurrentRoom().getName());
               System.out.println(player.getCurrentRoom().getDescription());
             }
-
+        }
         }
   }
 
@@ -91,7 +89,5 @@ public class RoomActivity {
     double g = 1 + (Math.random() * 6);
     return (int) g;
   }
-
 }
-
- */
+*/
