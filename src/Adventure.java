@@ -118,15 +118,16 @@ public class Adventure {
             player.setCurrentRoom(gameMap.secretRoom);
             System.out.println("You have entered the " + player.getCurrentRoom().getName());
             getCurrentRoomDescription();
+            // Bruger trim() så den ikke crasher
         } else if (input.contains("drop")) {
-            if (player.findItem(input.substring(5)) != null) {
-                player.dropItem(player.findItem(input.substring(5)));
-                System.out.println("You dropped a " + input.substring(5));
+            if (player.findItem(input.substring(4).trim()) != null) {
+                player.dropItem(player.findItem(input.substring(4).trim()));
+                System.out.println("You dropped a " + input.substring(4).trim());
             } else {
                 System.out.println("There is no such thing as a " + input.substring(5));
             }
-
-        } else if (input.contains("take")) {
+            // Vigtigt med mellemrum efter "take", da den ellers crasher. Har gjort det på en anden måde oppe i "drop".
+        } else if (input.contains("take ")) {
             if (player.getCurrentRoom().findItem(input.substring(5)) != null) {
                 player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
                 System.out.println("You picked up a " + input.substring(5));
@@ -205,7 +206,7 @@ public class Adventure {
             System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
             for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
                 if (1 == player.getCurrentRoomItems().size())
-                    System.out.println("a " + player.getCurrentRoomItems().get(i).printFullName() + ".");
+                    System.out.println(" " + player.getCurrentRoomItems().get(i).printFullName() + ".");
                 else if (i + 1 == player.getCurrentRoomItems().size()) {
                     System.out.println("and " + player.getCurrentRoomItems().get(i).printFullName() + ".");
                 } else {
