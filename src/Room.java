@@ -62,14 +62,12 @@ public class Room {
     }
     public ArrayList<Item> getItems() {
       return this.items;
-
-
     }
     public Item findItem(String itemName) {
         Item item;
             for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).getName().equalsIgnoreCase(itemName)
-                            || items.get(i).toString().equalsIgnoreCase(itemName)) {
+                            ^ items.get(i).toString().equalsIgnoreCase(itemName)) {
                         System.out.println("Room findItem: kunne godt finde item");
                         item = items.get(i);
                         return item;

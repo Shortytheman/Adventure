@@ -31,44 +31,47 @@ public class Map {
     room7.setEast(room8);
     room8.setEast(room9);
 
-    room1.getItems().add(new Item());
-    room1.getItems().add(new Item());
-    room1.getItems().add(new Item());
   }
-/*
+
   public void addItems(){
     Item item = new Item();
     Random random = new Random();
-    int f = random.nextInt(8)+1;
+    int f = random.nextInt(9)+1;
     int g = random.nextInt(4)+1;
     int m = 0;
     do {
       switch (f) {
         case 1:
-          room1Items.add(item.makeAnItem());
+          room1.getItems().add(new Item());
+          m++;
         case 2:
-          room2Items.add(item.makeAnItem());
+          room2.getItems().add(new Item());
+          m++;
         case 3:
-          room3Items.add(item.makeAnItem());
+          room3.getItems().add(new Item());
+          m++;
         case 4:
-          room4Items.add(item.makeAnItem());
+          room4.getItems().add(new Item());
+          m++;
         case 5:
-          room5Items.add(item.makeAnItem());
+          room5.getItems().add(new Item());
+          m++;
         case 6:
-          room6Items.add(item.makeAnItem());
+          room6.getItems().add(new Item());
+          m++;
         case 7:
-          room7Items.add(item.makeAnItem());
+          room7.getItems().add(new Item());
+          m++;
         case 8:
-          room8Items.add(item.makeAnItem());
+          room8.getItems().add(new Item());
+          m++;
         case 9:
-          room9Items.add(item.makeAnItem());
+          room9.getItems().add(new Item());
+          m++;
       }
-    m++;
     }
     while (m < g);
 
   }
-
- */
 
 }
