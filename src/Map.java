@@ -34,8 +34,9 @@ public class Map {
     room7.setEast(room8);
     room8.setEast(room9);
     room4.getItems().add(new Item("shovel"));
-    room1.getItems().add(new Food("Moldy bread", -10));
     room1.getItems().add(new Food());
+    room1.getItems().add(new Food("edible lamp", 200));
+    room1.getItems().add(new Food("edible lamp", 200));
 
   }
 
@@ -51,6 +52,7 @@ public class Map {
          // m++;
         case 2:
           room2.getItems().add(new Item());
+          room2.getItems().add(new Food());
           m++;
         case 3:
           room3.getItems().add(new Item());

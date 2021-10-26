@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class Food extends Consumable{
 
-
     public Food(String name, int healthValue) {
         this.name = name;
         this.healthValue = healthValue;
