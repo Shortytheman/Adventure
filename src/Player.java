@@ -16,8 +16,8 @@ public class Player {
     }
 
     public ArrayList<Item> getCurrentRoomItems() {
-        ArrayList<Item> items = getCurrentRoom().getItems();
-        return items;
+       return getCurrentRoom().getItems();
+
     }
 
     public void setCurrentRoom(Room room) {
@@ -47,21 +47,30 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    public void takeItem(Item item) {
-        inventory.add(item);
-        System.out.println("item added");
-    }
+
     public Item findItem(String itemName) {
         Item item;
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getName().equalsIgnoreCase(itemName)
                     || inventory.get(i).toString().equalsIgnoreCase(itemName)) {
-                System.out.println("kunne godt finde item");
+                System.out.println("findItem: kunne godt finde item");
                 item = inventory.get(i);
                 return item;
             }
         }
+        System.out.println("findItem: den returner null");
         return null;
+    }
+    public void takeItem(Item item) {
+        if (item != null) {
+            inventory.add(item);
+            getCurrentRoomItems().remove(item);
+
+            System.out.println("den her kører");
+        }
+        else {
+            System.out.println("der er ikke blevet samlet noget op");
+        }
     }
 
 

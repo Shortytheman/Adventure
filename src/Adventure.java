@@ -112,8 +112,8 @@ public class Adventure {
             look();
         } else if (input.contains("take")) {
             if (player.getCurrentRoom().findItem(input.substring(5)) != null) {
-                player.takeItem(player.findItem(input.substring(5)));
-                System.out.println("der er et item named " + input.substring(5));
+                player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
+                System.out.println("You picked up a " + input.substring(5));
             } else {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }

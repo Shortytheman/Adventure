@@ -70,7 +70,7 @@ public class Room {
             for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).getName().equalsIgnoreCase(itemName)
                             || items.get(i).toString().equalsIgnoreCase(itemName)) {
-                        System.out.println("kunne godt finde item");
+                        System.out.println("Room findItem: kunne godt finde item");
                         item = items.get(i);
                         return item;
                     }
