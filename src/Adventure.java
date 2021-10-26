@@ -110,7 +110,17 @@ public class Adventure {
             help();
         } else if (input.equalsIgnoreCase("look")) {
             look();
-        } else if (input.contains("take")) {
+        } else if(input.contains("drop")) {
+            if(player.findItem(input.substring(5)) != null) {
+                player.dropItem(player.findItem(input.substring(5)));
+                System.out.println("You dropped a " + input.substring(5));
+        }
+            else {
+                System.out.println("There is no such thing as a " + input.substring(5));
+            }
+
+        }
+        else if (input.contains("take")) {
             if (player.getCurrentRoom().findItem(input.substring(5)) != null) {
                 player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
                 System.out.println("You picked up a " + input.substring(5));

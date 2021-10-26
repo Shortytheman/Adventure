@@ -65,13 +65,25 @@ public class Player {
         if (item != null) {
             inventory.add(item);
             getCurrentRoomItems().remove(item);
-
             System.out.println("den her kører");
         }
         else {
             System.out.println("der er ikke blevet samlet noget op");
         }
     }
+    public void dropItem(Item item) {
+        if(item!= null) {
+            getCurrentRoomItems().add(item);
+            inventory.remove(item);
+        }
+        else {
+            System.out.println("der er ikke blevet smidt noget");
+        }
+    }
+        public ArrayList<Item> getInventory() {
+            return inventory;
+        }
+
 
 
 
