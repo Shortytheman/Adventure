@@ -58,8 +58,13 @@ public class Item {
   public String getName() {
     return this.name;
   }
-  public String toString() {
+
+  public String printFullName(){
     return prefix + " " + name + " " + suffix;
+  }
+
+  public String toString() {
+    return prefix + " " + name;
   }
 
   }

@@ -11,12 +11,16 @@ public class Player {
         return this.currentRoom;
     }
 
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
     public String getCurrentRoomDescription() {
         return this.currentRoom.getDescription();
     }
 
     public ArrayList<Item> getCurrentRoomItems() {
-       return getCurrentRoom().getItems();
+        return getCurrentRoom().getItems();
 
     }
 
@@ -30,6 +34,10 @@ public class Player {
 
     public int getStepCounter() {
         return this.stepCounter;
+    }
+
+    public void incrementStepCounter() {
+        stepCounter++;
     }
 
     public void setStepCounter(int stepCounter) {
@@ -61,28 +69,29 @@ public class Player {
         System.out.println("findItem: den returner null");
         return null;
     }
+
     public void takeItem(Item item) {
         if (item != null) {
             inventory.add(item);
             getCurrentRoomItems().remove(item);
             System.out.println("den her kører");
-        }
-        else {
+        } else {
             System.out.println("der er ikke blevet samlet noget op");
         }
     }
+
     public void dropItem(Item item) {
-        if(item!= null) {
+        if (item != null) {
             getCurrentRoomItems().add(item);
             inventory.remove(item);
-        }
-        else {
+        } else {
             System.out.println("der er ikke blevet smidt noget");
         }
     }
-        public ArrayList<Item> getInventory() {
-            return inventory;
-        }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
 
 
 
