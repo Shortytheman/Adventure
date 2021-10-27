@@ -14,11 +14,14 @@ public class Map {
       "them go.. don't you just want to\nstay here forever?");
   Room room5 = new Room("ROOM OF WINNINGS!");
   Room room6 = new Room("hall of bling bling");
-  Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl");
+  Room room7 = new Room("underwater terrarium", "MLMLLLLL BLBLLLLBLBL mrglmrglmrglmrgl\nWhile getting" +
+          " your ears destroyed by weirds sounds, you notice something resembling a cross drawn on the ground.");
   Room room8 = new Room("DontGoUp place", "Welcome to this room traveler, if u go up north " +
       "here, i will kill\na puppy from the room of " +
       "distractions.. i PROMISE I WILL.. so don't do it! ");
   Room room9 = new Room("you-are-probably-lost area");
+  Room secretRoom = new Room("Pit of despair", "There is no way out");
+
 
   public void makeConnections(){
     room1.setEast(room2);
@@ -30,22 +33,26 @@ public class Map {
     room6.setSouth(room9);
     room7.setEast(room8);
     room8.setEast(room9);
+    room4.getItems().add(new Item("shovel"));
+    room1.getItems().add(new Food());
+    room1.getItems().add(new Food("edible lamp", 200));
+    room1.getItems().add(new Food("edible lamp", 200));
 
   }
 
   public void addItems(){
-    Item item = new Item();
     Random random = new Random();
     int f = random.nextInt(9)+1;
     int g = random.nextInt(4)+1;
     int m = 0;
     do {
       switch (f) {
-        case 1:
-          room1.getItems().add(new Item());
-          m++;
+       // case 1:
+         // room1.getItems().add(new Item());
+         // m++;
         case 2:
           room2.getItems().add(new Item());
+          room2.getItems().add(new Food());
           m++;
         case 3:
           room3.getItems().add(new Item());

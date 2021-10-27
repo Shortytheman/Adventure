@@ -5,13 +5,22 @@ public class Player {
     private final int MAX_STEPS = 30;
     private Room currentRoom;
     private String playerName;
+    private int health = 20;
     private ArrayList<Item> inventory = new ArrayList<>();
     private int health = 100;
 
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
-
+    public int getHealth() {
+        return this.health;
+    }
+    public void setHealth(int health) {
+            this.health = health;
+            if (getHealth() > 100) {
+                this.health = 100;
+        }
+    }
     public ArrayList<Item> getInventory() {
         return inventory;
     }
@@ -88,7 +97,25 @@ public class Player {
         } else {
             System.out.println("der er ikke blevet smidt noget");
         }
+
     }
+    public void eatConsumable(Consumable consumable) {
+        setHealth(getHealth() + consumable.getHealthValue());
+
+    }
+    public void checkHealth() {
+        if (getHealth() > 74) {
+            System.out.println("You are in great health and ready to fight!");
+    }
+        else if (getHealth() <= 74 && getHealth() > 50) {
+            System.out.println("You are slightly wounded but can still fight.");
+        }
+        else if (getHealth() <= 50 && getHealth() > 25) {
+            System.out.println("You are in poor shape and should probably eat something");
+        }
+        else if (getHealth() <= 25) {
+            System.out.println("You are severely wounded and need to avoid fighting if you can");
+        }
 
 
 
@@ -96,46 +123,12 @@ public class Player {
 
 
 
-    public void move(String direction) {
 
-        if (direction.equalsIgnoreCase("go north") && getCurrentRoom().getNorth() != null) {
-            setCurrentRoom(getCurrentRoom().getNorth());
-            System.out.println("Going north!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-
-        } else if (direction.equalsIgnoreCase("go south") && getCurrentRoom().getSouth() != null) {
-            setCurrentRoom(getCurrentRoom().getSouth());
-            System.out.println("Going south!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-
-
-        } else if (direction.equalsIgnoreCase("go west") && getCurrentRoom().getWest() != null) {
-            setCurrentRoom(getCurrentRoom().getWest());
-            System.out.println("Going west!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-
-
-        } else if (direction.equalsIgnoreCase("go east") && getCurrentRoom().getEast() != null) {
-            setCurrentRoom(getCurrentRoom().getEast());
-            System.out.println("Going east!");
-            System.out.println("You have entered the " + getCurrentRoom().getName());
-            System.out.println(getCurrentRoom().getDescription());
-            stepCounter++;
-
-        } else {
-            if (!direction.equalsIgnoreCase("exit"))
-                System.out.println("Can't go that way");
         }
    /* if (getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
       RoomActivity activity = new RoomActivity();
       activity.diceGame();
       }
       */
-    }}
+    }
 
