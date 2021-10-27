@@ -125,7 +125,7 @@ public class Adventure {
                 System.out.println("You consumed " + input.substring(4));
                 System.out.println(player.getHealth());
             }
-            // mangler at lave et metodekald til at fjerne items fra player inventory
+            // Den går ned i den sidste else, i stedet for den anden sidste, hvis man prøver at spise et våben fra inventory
             else if (player.findItem(input.substring(4)) != null
                     && player.findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
@@ -239,11 +239,11 @@ public class Adventure {
             System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
             for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
                 if (1 == player.getCurrentRoomItems().size())
-                    System.out.println(player.getCurrentRoomItems().get(i).printFullName() + ".");
+                    System.out.println(player.getCurrentRoomItems().get(i).getFullName() + ".");
                 else if (i + 1 == player.getCurrentRoomItems().size()) {
-                    System.out.println("and " + player.getCurrentRoomItems().get(i).printFullName() + ".");
+                    System.out.println("and " + player.getCurrentRoomItems().get(i).getFullName() + ".");
                 } else {
-                    System.out.print(player.getCurrentRoomItems().get(i).printFullName() + ", ");
+                    System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
 
                 }
         }
