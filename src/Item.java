@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Item {
+public abstract class Item {
   String name;
   String prefix;
   String suffix;
