@@ -111,36 +111,36 @@ public class Adventure {
         } else if (input.equalsIgnoreCase("look")) {
             look();
         } else if (input.equalsIgnoreCase("inventory")
-                    || input.equalsIgnoreCase("inv")) {
+                || input.equalsIgnoreCase("inv")) {
             printInventory();
         } else if (input.equalsIgnoreCase("health")) {
             player.checkHealth();
-        }
-        else if (input.contains("eat ")) {
+        } else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
-                && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
+                    && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
-                 player.eatConsumable((Food)player.getCurrentRoom().findItem(input.substring(4)));
-                 player.getCurrentRoom().getItems().remove(player.getCurrentRoom().findItem(input.substring(4)));
+                player.eatConsumable((Food) player.getCurrentRoom().findItem(input.substring(4)));
+                player.getCurrentRoom().getItems().remove(player.getCurrentRoom().findItem(input.substring(4)));
                 // player.eatConsumable((Consumable) player.findItem(input.substring(4)));
                 System.out.println("You consumed " + input.substring(4));
                 System.out.println(player.getHealth());
             }
-            // mangler at lave et metodekald til at fjerne items fra player inventory
+            // Den går ned i den sidste else, i stedet for den anden sidste, hvis man prøver at spise et våben fra inventory
             else if (player.findItem(input.substring(4)) != null
-                 && player.findItem(input.substring(4)) instanceof Consumable) {
+                    && player.findItem(input.substring(4)) instanceof Consumable) {
+                System.out.println(player.getHealth());
                 player.eatConsumable((Consumable) player.findItem((input.substring(4))));
+                player.getInventory().remove(player.findItem(input.substring(4)));
                 System.out.println("You ate " + input.substring(4));
-            }
-            else if (player.getCurrentRoom().findItem(input.substring(4)) != null
+                System.out.println(player.getHealth());
+            } else if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable != true) {
                 System.out.println("You can't eat " + input.substring(4) + ".");
-            }else {
+            } else {
                 System.out.println("You don't have a " + input.substring(4) + " in your inventory.");
             }
 
-        }
-        else if (input.equalsIgnoreCase("dig")
+        } else if (input.equalsIgnoreCase("dig")
                 && player.findItem("shovel") != null
                 && player.getCurrentRoom() == gameMap.room7) {
             player.setCurrentRoom(gameMap.secretRoom);
@@ -152,7 +152,7 @@ public class Adventure {
                 player.dropItem(player.findItem(input.substring(4).trim()));
                 System.out.println("You dropped a " + input.substring(4).trim());
             } else {
-                System.out.println("There is no such thing as a " + input.substring(5));
+                System.out.println("There is no such thing as a " + input.substring(5) + " in your inventory.");
             }
             // Vigtigt med mellemrum efter "take", da den ellers crasher. Har gjort det på en anden måde oppe i "drop".
         } else if (input.contains("take ")) {
@@ -223,9 +223,9 @@ public class Adventure {
         int itemNumber = 1;
         if (player.getInventory().size() != 0)
             for (Item s : player.getInventory()) {
-            System.out.println(itemNumber + ". " + s);
-            itemNumber++;
-        }
+                System.out.println(itemNumber + ". " + s);
+                itemNumber++;
+            }
         else {
             System.out.println("There is nothing in your inventory.");
         }
@@ -239,11 +239,11 @@ public class Adventure {
             System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
             for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
                 if (1 == player.getCurrentRoomItems().size())
-                    System.out.println(player.getCurrentRoomItems().get(i).printFullName() + ".");
+                    System.out.println(player.getCurrentRoomItems().get(i).getFullName() + ".");
                 else if (i + 1 == player.getCurrentRoomItems().size()) {
-                    System.out.println("and " + player.getCurrentRoomItems().get(i).printFullName() + ".");
+                    System.out.println("and " + player.getCurrentRoomItems().get(i).getFullName() + ".");
                 } else {
-                    System.out.print(player.getCurrentRoomItems().get(i).printFullName() + ", ");
+                    System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
 
                 }
         }

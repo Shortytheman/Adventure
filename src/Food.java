@@ -6,40 +6,48 @@ public class Food extends Consumable{
     public Food(String name, int healthValue) {
         this.name = name;
         this.healthValue = healthValue;
-    }
-    public Food() {}
+        this.prefix = consumablePrefix();
+        this.suffix = consumableSuffix();
 
-    public String itemNames(){
-        ArrayList<String> itemNames = new ArrayList<>();
-        itemNames.add("bread");
-        itemNames.add("apple");
-        itemNames.add("banana");
-        itemNames.add("porkchop");
-        Random rand = new Random();
-        int random = rand.nextInt(itemNames.size());
-        return itemNames.get(random);
     }
-    public String itemPrefix(){
-        ArrayList<String > itemPrefix = new ArrayList<>();
-        itemPrefix.add("a moldy");
-        itemPrefix.add("a half-rotten");
-        itemPrefix.add("a damn good looking");
-        itemPrefix.add("an overcooked");
-        itemPrefix.add("a dry");
-        Random rand = new Random();
-        int random = rand.nextInt(itemPrefix.size());
-        return itemPrefix.get(random);
+    public Food() {
+        this.name = consumableName();
+        this.prefix = consumablePrefix();
+        this.suffix = consumableSuffix();
     }
-    public String itemSuffix(){
-        ArrayList<String > itemSuffix = new ArrayList<>();
-        itemSuffix.add("with some dust on it");
-        itemSuffix.add("that has seen better days");
-        itemSuffix.add("that looks good to me");
-        itemSuffix.add(". I wonder what i can use this for");
-        itemSuffix.add(". What a strange thing to find");
+
+
+    public String consumableName(){
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("bread");
+        strings.add("apple");
+        strings.add("banana");
+        strings.add("porkchop");
         Random rand = new Random();
-        int random = rand.nextInt(itemSuffix.size());
-        return itemSuffix.get(random);
+        int random = rand.nextInt(strings.size());
+        return strings.get(random);
+    }
+    public String consumablePrefix(){
+        ArrayList<String > strings = new ArrayList<>();
+        strings.add("a moldy");
+        strings.add("a half-rotten");
+        strings.add("a damn good looking");
+        strings.add("an overcooked");
+        strings.add("a dry");
+        Random rand = new Random();
+        int random = rand.nextInt(strings.size());
+        return strings.get(random);
+    }
+    public String consumableSuffix(){
+        ArrayList<String > strings = new ArrayList<>();
+        strings.add("with some dust on it");
+        strings.add("that has seen better days");
+        strings.add("that looks good to me");
+        strings.add(". I wonder what i can use this for");
+        strings.add(". What a strange thing to find");
+        Random rand = new Random();
+        int random = rand.nextInt(strings.size());
+        return strings.get(random);
     }
 
 }

@@ -33,10 +33,11 @@ public class Map {
     room6.setSouth(room9);
     room7.setEast(room8);
     room8.setEast(room9);
-    room4.getItems().add(new Item("shovel"));
+    room4.getItems().add(new Thing("shovel"));
     room1.getItems().add(new Food());
     room1.getItems().add(new Food("edible lamp", 200));
     room1.getItems().add(new Food("edible lamp", 200));
+    room1.getItems().add(new MeleeWeapon("Greataxe", 50));
 
   }
 
@@ -49,31 +50,32 @@ public class Map {
       switch (f) {
        // case 1:
          // room1.getItems().add(new Item());
+
          // m++;
         case 2:
-          room2.getItems().add(new Item());
+          room2.getItems().add(new Thing());
           room2.getItems().add(new Food());
           m++;
         case 3:
-          room3.getItems().add(new Item());
+          room3.getItems().add(new Thing());
           m++;
         case 4:
-          room4.getItems().add(new Item());
+          room4.getItems().add(new Thing());
           m++;
         case 5:
-          room5.getItems().add(new Item());
+          room5.getItems().add(new Thing());
           m++;
         case 6:
-          room6.getItems().add(new Item());
+          room6.getItems().add(new Thing());
           m++;
         case 7:
-          room7.getItems().add(new Item());
+          room7.getItems().add(new Thing());
           m++;
         case 8:
-          room8.getItems().add(new Item());
+          room8.getItems().add(new Thing());
           m++;
         case 9:
-          room9.getItems().add(new Item());
+          room9.getItems().add(new Thing());
           m++;
       }
     }
