@@ -110,11 +110,8 @@ public class Adventure {
             help();
         } else if (input.equalsIgnoreCase("look")) {
             look();
-        }
-        else if (input.equalsIgnoreCase("inventory")){
+        } else if (input.equalsIgnoreCase("inventory")){
             printInventory();
-        }
-            else if (input.contains("take")) {
         } else if(input.contains("drop")) {
             if(player.findItem(input.substring(5)) != null) {
                 player.dropItem(player.findItem(input.substring(5)));

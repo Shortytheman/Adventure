@@ -6,6 +6,7 @@ public class Player {
     private Room currentRoom;
     private String playerName;
     private ArrayList<Item> inventory = new ArrayList<>();
+    private int health = 100;
 
     public Room getCurrentRoom() {
         return this.currentRoom;
