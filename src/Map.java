@@ -38,6 +38,9 @@ public class Map {
     room1.getItems().add(new Food("edible lamp", 200));
     room1.getItems().add(new Food("edible lamp", 200));
     room1.getItems().add(new MeleeWeapon("Greataxe", 50));
+    room1.getItems().add(new RangedWeapon("bow", 20));
+    room2.getItems().add(new Food("green liquid",-200));
+    room1.getEnemies().add(new Enemy("Gargoyle",10,40));
 
   }
 
@@ -48,13 +51,8 @@ public class Map {
     int m = 0;
     do {
       switch (f) {
-       // case 1:
-         // room1.getItems().add(new Item());
-
-         // m++;
         case 2:
           room2.getItems().add(new Thing());
-          room2.getItems().add(new Food());
           m++;
         case 3:
           room3.getItems().add(new Thing());

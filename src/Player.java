@@ -7,7 +7,6 @@ public class Player {
     private String playerName;
     private int health = 20;
     private ArrayList<Item> inventory = new ArrayList<>();
-    private int health = 100;
 
     public Room getCurrentRoom() {
         return this.currentRoom;
@@ -101,7 +100,6 @@ public class Player {
     }
     public void eatConsumable(Consumable consumable) {
         setHealth(getHealth() + consumable.getHealthValue());
-
     }
     public void checkHealth() {
         if (getHealth() > 74) {
