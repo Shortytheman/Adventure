@@ -3,6 +3,12 @@ import java.util.Random;
 
 public class Food extends Consumable{
 
+    public Food(int healthValue, String prefix, String name, String suffix) {
+        this.name = name;
+        this.healthValue = healthValue;
+        this.prefix = prefix;
+        this.suffix = suffix;
+    }
     public Food(String name, int healthValue) {
         this.name = name;
         this.healthValue = healthValue;

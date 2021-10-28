@@ -6,6 +6,7 @@ public class MeleeWeapon extends Weapon{
     int damage = 20;
     public MeleeWeapon(String name, int damage) {
         this.name = name;
+        this.damage = damage;
         this.prefix = nonConsumablePrefix();
         this.suffix = nonConsumableSuffix();
     }
