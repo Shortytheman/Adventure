@@ -23,8 +23,6 @@ public class Adventure {
     void look() {
         System.out.println("You're looking around in the room...");
         getCurrentRoomDescription();
-
-
     }
 
     void help() {
@@ -58,7 +56,7 @@ public class Adventure {
         Scanner scanner = new Scanner(System.in);
         player.setPlayerName(scanner.nextLine());
 
-        gameMap.room13.setDescription("You did it " + player.getPlayerName() + ".. when no one believed in you" +
+        gameMap.room5.setDescription("You did it " + player.getPlayerName() + ".. when no one believed in you" +
                 ", not even yourself, so how'd u get out? like\n" +
                 "really please tell me, i need to know for realz man.. congratz");
 
@@ -87,7 +85,7 @@ public class Adventure {
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
         while (getGameIsRunning()) {
-            if (player.getCurrentRoom() == gameMap.room13) {
+            if (player.getCurrentRoom() == gameMap.room5) {
                 System.out.println("You win, game over!");
                 setGameIsRunning(false);
             } else if (player.getStepCounter() == player.getMAX_STEPS()) {
@@ -136,10 +134,14 @@ public class Adventure {
         else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
+                System.out.println(player.getHealth());
                 player.eatConsumable((Food) player.getCurrentRoom().findItem(input.substring(4)));
                 player.getCurrentRoom().getItems().remove(player.getCurrentRoom().findItem(input.substring(4)));
+                // player.eatConsumable((Consumable) player.findItem(input.substring(4)));
                 System.out.println("You consumed " + input.substring(4));
+                System.out.println(player.getHealth());
             }
+            // Den går ned i den sidste else, i stedet for den anden sidste, hvis man prøver at spise et våben fra inventory
             else if (player.findItem(input.substring(4)) != null
                     && player.findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
@@ -152,8 +154,7 @@ public class Adventure {
                         || player.findItem(input.substring(4)) != null &&
                     player.findItem(input.substring(4)) instanceof Consumable != true) {
                 System.out.println("You can't eat " + input.substring(4) + ".");
-            }
-            else {
+            } else {
                 System.out.println("You don't have a " + input.substring(4) + " in your inventory.");
             }
 
@@ -179,7 +180,31 @@ public class Adventure {
             } else {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
-        } else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
+        }
+        else if (input.contains("equip ")) {
+            if (player.getCurrentRoom().findItem(input.substring(6)) != null
+                && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
+                player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
+                System.out.println("You equipped the" + input.substring(5));
+            } else {
+                System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
+            }
+        } else if (input.contains("shoot ")){
+            if (player.getCurrentRoom().findItem(input.substring(6)) instanceof RangedWeapon
+                && player.getCurrentRoom().findEnemy(input.substring(6)) != null)
+             {
+                ((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).durability--;
+                 player.getCurrentRoom().findEnemy(input.substring(6)).getHit((((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).getDamage()));
+                 System.out.println(((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).durability);
+            }
+            System.out.println(player.getCurrentRoom().findEnemy(input.substring(6)).getName() + " now has: " + player.getCurrentRoom().findEnemy(input.substring(6)).getHealth() + " left");
+            if (player.getCurrentRoom().findEnemy(input.substring(6)).getHealth() <= 0){
+                System.out.println("Hurray, you have killed " + player.getCurrentRoom().findEnemy(input.substring(6)).getName());
+            }
+            else
+                System.out.println("You can't shoot that here");
+        }
+            else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
                 && !input.equalsIgnoreCase("help") && !input.equalsIgnoreCase("go east")
                 && !input.equalsIgnoreCase("go north") &&
                 !input.equalsIgnoreCase("go west") && !input.equalsIgnoreCase("go south")) {
@@ -263,6 +288,8 @@ public class Adventure {
                     System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
 
                 }
+            for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
+                System.out.println("You also see a " + player.getCurrentRoom().getEnemies().get(i).getFullName());
         }
     }
 

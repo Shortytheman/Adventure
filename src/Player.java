@@ -107,7 +107,6 @@ public class Player {
     }
     public void eatConsumable(Consumable consumable) {
         setHealth(getHealth() + consumable.getHealthValue());
-
     }
     public void checkHealth() {
         if (getHealth() > 74) {

@@ -2,8 +2,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RangedWeapon extends Weapon{
-    int durability = 20;
+    int durability = 5;
     int damage = 10;
+
+    public int getDamage(){
+        return this.damage;
+    }
 
     public RangedWeapon(String name, int damage) {
         this.name = name;
