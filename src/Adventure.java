@@ -120,17 +120,7 @@ public class Adventure {
         } else if (input.equalsIgnoreCase("health")) {
             player.checkHealth();
         }
-        else if (input.contains("equip ")) {
-            if(player.findItem(input.substring(6)) != null
-                && player.findItem(input.substring(6)) instanceof Weapon) {
-                player.equipWeapon((Weapon)player.findItem(input.substring(6)));
-                System.out.println("You have equipped " + input.substring(6));
-            }
-            else if (player.findItem(input.substring(6)) != null
-                    && !(player.findItem(input.substring(6)) instanceof Weapon)) {
-                System.out.println("You can't equip that");
-            }
-        }
+
         else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
@@ -187,11 +177,12 @@ public class Adventure {
                 player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
                 System.out.println("You equipped the" + input.substring(5));
             }
-            if (!(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon)){
+            if (!(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) &&
+                player.getCurrentRoom().findItem(input.substring(6)) != null){
                 System.out.println("You can't equip the"+ input.substring(5) +", its not a weapon.");
             }
-            else {
-                System.out.println("There is no such thing as a " + input.substring(5) + " to equip");
+            else if (player.getCurrentRoom().findItem(input.substring(6)) == null){
+                System.out.println("There is no such thing as a" + input.substring(5) + " to equip");
             }
         } else if (input.contains("shoot ")){
             if (player.getCurrentRoom().findItem(input.substring(6)) instanceof RangedWeapon
