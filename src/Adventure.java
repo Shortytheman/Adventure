@@ -166,8 +166,12 @@ public class Adventure {
                 && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
                 player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
                 System.out.println("You equipped the" + input.substring(5));
-            } else {
-                System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
+            }
+            if (!(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon)){
+                System.out.println("You can't equip the"+ input.substring(5) +", its not a weapon.");
+            }
+            else {
+                System.out.println("There is no such thing as a " + input.substring(5) + " to equip");
             }
         } else if (input.contains("shoot ")){
             if (player.getCurrentRoom().findItem(input.substring(6)) instanceof RangedWeapon
