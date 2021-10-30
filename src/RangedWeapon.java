@@ -2,26 +2,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RangedWeapon extends Weapon{
-    int durability = 5;
+
     int damage = 10;
 
     public int getDamage(){
         return this.damage;
     }
 
-    public RangedWeapon(String name, int damage) {
-        this.name = name;
-        this.damage = damage;
-        this.prefix = nonConsumablePrefix();
-        this.suffix = nonConsumableSuffix();
-
-    }
-    public RangedWeapon() {
+    public RangedWeapon(int damage) {
+        super(damage);
         this.name = nonConsumableName();
         this.prefix = nonConsumablePrefix();
         this.suffix = nonConsumableSuffix();
 
     }
+
     public String nonConsumableName() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("bow");

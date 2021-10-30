@@ -36,14 +36,12 @@ public class Map {
     room4.getItems().add(new Thing("shovel"));
     room1.getItems().add(new Food());
     room1.getItems().add(new Food("edible lamp", 200));
-    room1.getItems().add(new Food("edible lamp", 200));
     room1.getItems().add(new MeleeWeapon("Greataxe", 50));
-    secretRoom.getItems().add((new MeleeWeapon()));
     room2.getItems().add(new Food(-200, "a suspicious looking",
                                   "banana", "that looks completely safe"));
-    room1.getItems().add(new RangedWeapon("bow", 20));
+    room1.getItems().add(new RangedWeapon(20));
     room2.getItems().add(new Food("green liquid",-200));
-    room1.getEnemies().add(new Enemy("Gargoyle",10,40));
+    room1.getEnemies().add(new Enemy("Gargoyle", 40, new MeleeWeapon("hammer", 10)));
 
   }
 

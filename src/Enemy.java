@@ -6,28 +6,35 @@ public class Enemy {
   private String prefix;
   private String suffix;
   private int health;
-  private int damage;
-  private Weapon currentWeapon = new MeleeWeapon();
+  private Weapon currentWeapon;
 
-  public Enemy(String name, int damage, int health) {
+
+
+  public Enemy(String name, int health, Weapon weapon) {
     this.health = health;
     this.name = name;
-    this.damage = damage;
     this.prefix = enemyPrefix();
     this.suffix = enemySuffix();
+    this.currentWeapon = weapon;
+
   }
 
-  public Enemy() {
+  public Enemy(int health, Weapon weapon) {
     this.name = enemyName();
     this.prefix = enemyPrefix();
     this.suffix = enemySuffix();
+    this.health = health;
+    this.currentWeapon = weapon;
+  }
+  public Weapon getCurrentWeapon() {
+    return currentWeapon;
   }
 
   public int getHealth() {
     return this.health;
   }
   public void getHit(int damage) {
-    this.health = (health - damage);
+    this.health = (getHealth() - damage);
   }
 
   public String getName(){
@@ -70,6 +77,9 @@ public class Enemy {
     Random rand = new Random();
     int random = rand.nextInt(strings.size());
     return strings.get(random);
+  }
+  public String toString() {
+    return prefix + " " + name;
   }
 
 }

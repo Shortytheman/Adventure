@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MeleeWeapon extends Weapon{
-    int durability = 200;
-    int damage = 20;
+
     public MeleeWeapon(String name, int damage) {
+        super(damage);
         this.name = name;
-        this.damage = damage;
         this.prefix = nonConsumablePrefix();
         this.suffix = nonConsumableSuffix();
     }
-    public MeleeWeapon() {
+    public MeleeWeapon(int damage) {
+        super(damage);
         this.name = nonConsumableName();
         this.prefix = nonConsumablePrefix();
         this.suffix = nonConsumableSuffix();

@@ -171,6 +171,26 @@ public class Adventure {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
         }
+        else if (input.contains("attack ")) {
+            if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
+                Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
+                System.out.println(currentEnemy.getHealth());
+                player.attack(currentEnemy);
+                System.out.println(currentEnemy.getHealth());
+                System.out.println("You hit the " + currentEnemy + " for "
+                        + player.getCurrentWeapon().getDamage());
+                if (currentEnemy.getHealth() < 1) {
+                    Weapon droppedWeapon = currentEnemy.getCurrentWeapon();
+                    player.getCurrentRoomItems().add(droppedWeapon);
+                    player.getCurrentRoom().getEnemies().remove(currentEnemy);
+                    System.out.println("The " + input.substring(7) + " has died!");
+                }
+                else if (currentEnemy.getHealth() > 0) {
+                    // currentEnemy.attack(Player player)
+
+                }
+            }
+        }
         else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                 && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
@@ -184,7 +204,7 @@ public class Adventure {
             else if (player.getCurrentRoom().findItem(input.substring(6)) == null){
                 System.out.println("There is no such thing as a" + input.substring(5) + " to equip");
             }
-        } else if (input.contains("shoot ")){
+        } /*else if (input.contains("shoot ")){
             if (player.getCurrentRoom().findItem(input.substring(6)) instanceof RangedWeapon
                 && player.getCurrentRoom().findEnemy(input.substring(6)) != null)
              {
@@ -198,7 +218,8 @@ public class Adventure {
             }
             else
                 System.out.println("You can't shoot that here");
-        }
+                */
+
             else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
                 && !input.equalsIgnoreCase("help") && !input.equalsIgnoreCase("go east")
                 && !input.equalsIgnoreCase("go north") &&
@@ -269,10 +290,10 @@ public class Adventure {
     }
 
     public void getCurrentRoomDescription() {
-        if (player.getCurrentRoomItems().size() == 0) {
+        if (player.getCurrentRoomItems().size() < 1 && player.getCurrentRoom().getEnemies().size() < 1) {
             System.out.println(player.getCurrentRoomDescription());
             System.out.println("There's nothing of interest in the room");
-        } else {
+        } else if (player.getCurrentRoomItems().size() > 0 && player.getCurrentRoom().getEnemies().size() < 1) {
             System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
             for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
                 if (1 == player.getCurrentRoomItems().size())
@@ -281,12 +302,15 @@ public class Adventure {
                     System.out.println("and " + player.getCurrentRoomItems().get(i).getFullName() + ".");
                 } else {
                     System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
-
                 }
-            for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
-                System.out.println("You also see a " + player.getCurrentRoom().getEnemies().get(i).getFullName());
         }
-    }
+        else if (player.getCurrentRoom().getEnemies().size() > 0 && player.getCurrentRoomItems().size() < 1) {
+                    for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
+                        System.out.println("a "
+                                + player.getCurrentRoom().getEnemies().get(i).getFullName());
+                }
+        }
+
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
