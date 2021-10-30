@@ -95,8 +95,7 @@ public class Adventure {
                 System.out.println("You suddenly die of an unknown cause" +
                         ", although it was most likely a banana overdose.");
                 setGameIsRunning(false);
-            }
-            else {
+            } else {
                 choice();
             }
         }
@@ -119,9 +118,7 @@ public class Adventure {
             printInventory();
         } else if (input.equalsIgnoreCase("health")) {
             player.checkHealth();
-        }
-
-        else if (input.contains("eat ")) {
+        } else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
@@ -141,7 +138,7 @@ public class Adventure {
                 System.out.println(player.getHealth());
             } else if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable != true
-                        || player.findItem(input.substring(4)) != null &&
+                    || player.findItem(input.substring(4)) != null &&
                     player.findItem(input.substring(4)) instanceof Consumable != true) {
                 System.out.println("You can't eat " + input.substring(4) + ".");
             } else {
@@ -170,8 +167,7 @@ public class Adventure {
             } else {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
-        }
-        else if (input.contains("attack ")) {
+        } else if (input.contains("attack ")) {
             if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
                 Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
                 System.out.println(currentEnemy.getHealth());
@@ -184,24 +180,21 @@ public class Adventure {
                     player.getCurrentRoomItems().add(droppedWeapon);
                     player.getCurrentRoom().getEnemies().remove(currentEnemy);
                     System.out.println("The " + input.substring(7) + " has died!");
-                }
-                else if (currentEnemy.getHealth() > 0) {
+                } else if (currentEnemy.getHealth() > 0) {
                     // currentEnemy.attack(Player player)
 
                 }
             }
-        }
-        else if (input.contains("equip ")) {
+        } else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
-                && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
+                    && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
                 player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
                 System.out.println("You equipped the" + input.substring(5));
             }
             if (!(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) &&
-                player.getCurrentRoom().findItem(input.substring(6)) != null){
-                System.out.println("You can't equip the"+ input.substring(5) +", its not a weapon.");
-            }
-            else if (player.getCurrentRoom().findItem(input.substring(6)) == null){
+                    player.getCurrentRoom().findItem(input.substring(6)) != null) {
+                System.out.println("You can't equip the" + input.substring(5) + ", its not a weapon.");
+            } else if (player.getCurrentRoom().findItem(input.substring(6)) == null) {
                 System.out.println("There is no such thing as a" + input.substring(5) + " to equip");
             }
         } /*else if (input.contains("shoot ")){
@@ -218,9 +211,7 @@ public class Adventure {
             }
             else
                 System.out.println("You can't shoot that here");
-                */
-
-            else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
+                */ else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
                 && !input.equalsIgnoreCase("help") && !input.equalsIgnoreCase("go east")
                 && !input.equalsIgnoreCase("go north") &&
                 !input.equalsIgnoreCase("go west") && !input.equalsIgnoreCase("go south")) {
@@ -303,14 +294,26 @@ public class Adventure {
                 } else {
                     System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
                 }
-        }
-        else if (player.getCurrentRoom().getEnemies().size() > 0 && player.getCurrentRoomItems().size() < 1) {
-                    for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
-                        System.out.println("a "
-                                + player.getCurrentRoom().getEnemies().get(i).getFullName());
+        } else if (player.getCurrentRoom().getEnemies().size() > 0 && player.getCurrentRoomItems().size() < 1) {
+            for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
+                System.out.println("You see a "
+                        + player.getCurrentRoom().getEnemies().get(i).getFullName());
+        } else if (player.getCurrentRoomItems().size() > 0 && player.getCurrentRoom().getEnemies().size() > 0) {
+            System.out.print(player.getCurrentRoomDescription() + "\nLooking around the room you see ");
+            for (int i = 0; i < player.getCurrentRoomItems().size(); i++)
+                if (1 == player.getCurrentRoomItems().size())
+                    System.out.println(player.getCurrentRoomItems().get(i).getFullName() + ".");
+                else if (i + 1 == player.getCurrentRoomItems().size()) {
+                    System.out.println("and " + player.getCurrentRoomItems().get(i).getFullName() + ".");
+                } else {
+                    System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
                 }
+            for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
+                System.out.println("You also see a "
+                        + player.getCurrentRoom().getEnemies().get(i).getFullName());
         }
 
+    }
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
