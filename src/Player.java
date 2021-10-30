@@ -7,6 +7,7 @@ public class Player {
     private String playerName;
     private int health = 20;
     private ArrayList<Item> inventory = new ArrayList<>();
+    private Weapon currentWeapon;
 
     public Room getCurrentRoom() {
         return this.currentRoom;
@@ -64,6 +65,9 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+    public void setCurrentWeapon(Weapon weapon) {
+        this.currentWeapon = weapon;
+    }
 
     public Item findItem(String itemName) {
         Item item;
@@ -84,17 +88,20 @@ public class Player {
             inventory.add(item);
             getCurrentRoomItems().remove(item);
             System.out.println("den her kører");
-        } else {
-            System.out.println("der er ikke blevet samlet noget op");
+
+        }
+
+    }
+    public void equipWeapon(Weapon weapon) {
+        if (weapon != null) {
+            setCurrentWeapon(weapon);
+
         }
     }
-
     public void dropItem(Item item) {
         if (item != null) {
             getCurrentRoomItems().add(item);
             inventory.remove(item);
-        } else {
-            System.out.println("der er ikke blevet smidt noget");
         }
 
     }

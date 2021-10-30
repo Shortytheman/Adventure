@@ -33,6 +33,7 @@ public class Adventure {
                 "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
+        System.out.println("To check your inventory: \"Inv\"\n________________________");
         System.out.println("Make your choice to proceed, " + player.getPlayerName() + "!");
     }
 
@@ -90,7 +91,12 @@ public class Adventure {
             } else if (player.getStepCounter() == player.getMAX_STEPS()) {
                 System.out.println("You died of exhaustion");
                 setGameIsRunning(false);
-            } else {
+            } else if (player.getHealth() < 1) {
+                System.out.println("You suddenly die of an unknown cause" +
+                        ", although it was most likely a banana overdose.");
+                setGameIsRunning(false);
+            }
+            else {
                 choice();
             }
         }
@@ -113,7 +119,19 @@ public class Adventure {
             printInventory();
         } else if (input.equalsIgnoreCase("health")) {
             player.checkHealth();
-        } else if (input.contains("eat ")) {
+        }
+        else if (input.contains("equip ")) {
+            if(player.findItem(input.substring(6)) != null
+                && player.findItem(input.substring(6)) instanceof Weapon) {
+                player.equipWeapon((Weapon)player.findItem(input.substring(6)));
+                System.out.println("You have equipped " + input.substring(6));
+            }
+            else if (player.findItem(input.substring(6)) != null
+                    && !(player.findItem(input.substring(6)) instanceof Weapon)) {
+                System.out.println("You can't equip that");
+            }
+        }
+        else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
@@ -132,7 +150,9 @@ public class Adventure {
                 System.out.println("You ate " + input.substring(4));
                 System.out.println(player.getHealth());
             } else if (player.getCurrentRoom().findItem(input.substring(4)) != null
-                    && !(player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable)) {
+                    && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable != true
+                        || player.findItem(input.substring(4)) != null &&
+                    player.findItem(input.substring(4)) instanceof Consumable != true) {
                 System.out.println("You can't eat " + input.substring(4) + ".");
             } else {
                 System.out.println("You don't have a " + input.substring(4) + " in your inventory.");

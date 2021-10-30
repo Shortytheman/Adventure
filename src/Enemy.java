@@ -7,6 +7,7 @@ public class Enemy {
   private String suffix;
   private int health;
   private int damage;
+  private Weapon currentWeapon = new MeleeWeapon();
 
   public Enemy(String name, int damage, int health) {
     this.health = health;
