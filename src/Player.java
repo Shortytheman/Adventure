@@ -72,6 +72,9 @@ public class Player {
         enemy.getHit(getCurrentWeapon().getDamage());
 
     }
+    public void getHit(int damage) {
+        setHealth(getHealth() - damage);
+    }
 
     public Item findItem(String itemName) {
         Item item;

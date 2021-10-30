@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Adventure {
-    Player player;
-    Map gameMap;
+    private Player player;
+    private Map gameMap;
 
     public Adventure() {
         player = new Player();
@@ -170,9 +170,9 @@ public class Adventure {
         } else if (input.contains("attack ")) {
             if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
                 Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
-                System.out.println(currentEnemy.getHealth());
+                System.out.println("Enemy health før angreb " + currentEnemy.getHealth());
                 player.attack(currentEnemy);
-                System.out.println(currentEnemy.getHealth());
+                System.out.println("Enemy health efter angreb " + currentEnemy.getHealth());
                 System.out.println("You hit the " + currentEnemy + " for "
                         + player.getCurrentWeapon().getDamage());
                 if (currentEnemy.getHealth() < 1) {
@@ -181,6 +181,9 @@ public class Adventure {
                     player.getCurrentRoom().getEnemies().remove(currentEnemy);
                     System.out.println("The " + input.substring(7) + " has died!");
                 } else if (currentEnemy.getHealth() > 0) {
+                    System.out.println("Player health før angreb " + player.getHealth());
+                    currentEnemy.attack(player);
+                    System.out.println("Player health efter angreb " + player.getHealth());
                     // currentEnemy.attack(Player player)
 
                 }
@@ -188,30 +191,22 @@ public class Adventure {
         } else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                     && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
-                player.takeItem(player.getCurrentRoom().findItem(input.substring(5)));
-                System.out.println("You equipped the" + input.substring(5));
+                player.equipWeapon((Weapon) player.findItem(input.substring(6)));
+                System.out.println("You have equipped " + input.substring(6));
             }
-            if (!(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) &&
-                    player.getCurrentRoom().findItem(input.substring(6)) != null) {
-                System.out.println("You can't equip the" + input.substring(5) + ", its not a weapon.");
-            } else if (player.getCurrentRoom().findItem(input.substring(6)) == null) {
-                System.out.println("There is no such thing as a" + input.substring(5) + " to equip");
+
+            else if (player.findItem(input.substring(6)) != null
+                    && player.findItem(input.substring(6)) instanceof Weapon) {
+                Weapon weapon = (Weapon) player.findItem(input.substring(6));
+                player.equipWeapon(weapon);
+                System.out.println("You have equipped " + weapon);
+            } else if (player.findItem(input.substring(6)) != null
+                    && !(player.findItem(input.substring(6)) instanceof Weapon)) {
+                System.out.println("You can't equip that");
+            } else {
+                System.out.println("There is no such thing as a " + input.substring(6).trim() + " to equip");
             }
-        } /*else if (input.contains("shoot ")){
-            if (player.getCurrentRoom().findItem(input.substring(6)) instanceof RangedWeapon
-                && player.getCurrentRoom().findEnemy(input.substring(6)) != null)
-             {
-                ((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).durability--;
-                 player.getCurrentRoom().findEnemy(input.substring(6)).getHit((((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).getDamage()));
-                 System.out.println(((RangedWeapon) player.getCurrentRoom().findItem(input.substring(6))).durability);
-            }
-            System.out.println(player.getCurrentRoom().findEnemy(input.substring(6)).getName() + " now has: " + player.getCurrentRoom().findEnemy(input.substring(6)).getHealth() + " left");
-            if (player.getCurrentRoom().findEnemy(input.substring(6)).getHealth() <= 0){
-                System.out.println("Hurray, you have killed " + player.getCurrentRoom().findEnemy(input.substring(6)).getName());
-            }
-            else
-                System.out.println("You can't shoot that here");
-                */ else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
+        } else if (!input.equalsIgnoreCase("look") && !input.equalsIgnoreCase("exit")
                 && !input.equalsIgnoreCase("help") && !input.equalsIgnoreCase("go east")
                 && !input.equalsIgnoreCase("go north") &&
                 !input.equalsIgnoreCase("go west") && !input.equalsIgnoreCase("go south")) {

@@ -36,6 +36,9 @@ public class Enemy {
   public void getHit(int damage) {
     this.health = (getHealth() - damage);
   }
+  public void attack(Player player) {
+    player.getHit(getCurrentWeapon().getDamage());
+  }
 
   public String getName(){
     return this.name;
