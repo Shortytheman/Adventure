@@ -217,6 +217,13 @@ public class Adventure {
             } else if (player.findItem(input.substring(6)) != null
                     && !(player.findItem(input.substring(6)) instanceof Weapon)) {
                 System.out.println("You can't equip that");
+            }
+            else if (player.getCurrentWeapon().getName().equalsIgnoreCase(input.substring(6))){
+                System.out.println("You already have the " + input.substring(6) + " equipped");
+            }
+            else if (player.getCurrentRoom().findItem(input.substring(6)) != null
+                    && !(player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon)) {
+                    System.out.println("The " + input.substring(6) + " is not very effective to use as a weapon");
             } else {
                 System.out.println("There is no such thing as a " + input.substring(6).trim() + " to equip");
             }

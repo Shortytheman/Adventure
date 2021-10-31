@@ -72,9 +72,9 @@ public class Enemy {
 
   public String enemySuffix() {
     ArrayList<String> strings = new ArrayList<>();
-    strings.add("with some dust on it");
-    strings.add("that has seen better days");
-    strings.add("that looks good to me");
+    strings.add("that looks pissed off");
+    strings.add(", i wonder how long he's been here");
+    strings.add("that looks at me with killereyes");
     strings.add("i wonder what i can use this for");
     strings.add("what a strange thing to find");
     Random rand = new Random();
