@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Adventure {
@@ -127,18 +129,15 @@ public class Adventure {
                 || input.equalsIgnoreCase("inv")) {
             printInventory();
         } else if (input.equalsIgnoreCase("health")) {
-            player.checkHealth();
+            System.out.println(player.checkHealth());
         } else if (input.contains("eat ")) {
             if (player.getCurrentRoom().findItem(input.substring(4)) != null
                     && player.getCurrentRoom().findItem(input.substring(4)) instanceof Consumable) {
-                System.out.println(player.getHealth());
                 player.eatConsumable((Food) player.getCurrentRoom().findItem(input.substring(4)));
                 player.getCurrentRoom().getItems().remove(player.getCurrentRoom().findItem(input.substring(4)));
-                // player.eatConsumable((Consumable) player.findItem(input.substring(4)));
                 System.out.println("You consumed " + input.substring(4));
-                System.out.println(player.getHealth());
+
             }
-            // Den går ned i den sidste else, i stedet for den anden sidste, hvis man prøver at spise et våben fra inventory
             else if (player.findItem(input.substring(4)) != null
                     && player.findItem(input.substring(4)) instanceof Consumable) {
                 System.out.println(player.getHealth());
@@ -178,32 +177,39 @@ public class Adventure {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
         } else if (input.contains("attack ")) {
-            if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
-                if (!player.getCurrentWeapon().usesLeft()) {
-                    System.out.println("Your " + player.getCurrentWeapon() + " has no ammunition left, " +
-                            "you will have to use something else");
-                } else {
-                    Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
-                    System.out.println("Enemy health før angreb " + currentEnemy.getHealth());
-                    player.attack(currentEnemy);
-                    System.out.println("Enemy health efter angreb " + currentEnemy.getHealth());
-                    System.out.println("You hit the " + currentEnemy + " for "
-                            + player.getCurrentWeapon().getDamage());
-                    if (currentEnemy.getHealth() < 1) {
-                        Weapon droppedWeapon = currentEnemy.getCurrentWeapon();
-                        player.getCurrentRoomItems().add(droppedWeapon);
-                        player.getCurrentRoom().getEnemies().remove(currentEnemy);
-                        System.out.println("The " + input.substring(7) + " has died!");
-                    } else if (currentEnemy.getHealth() > 0) {
-                        System.out.println("Player health før angreb " + player.getHealth());
-                        currentEnemy.attack(player);
-                        System.out.println("Player health efter angreb " + player.getHealth());
-                        // currentEnemy.attack(Player player)
+            if (player.getCurrentWeapon() == null) {
+                System.out.println("You don't have a weapon equipped");
+            }
+            else if (!player.getCurrentWeapon().usesLeft()) {
+                System.out.println("Your " + player.getCurrentWeapon() + " has no ammunition left, " +
+                        "you will have to use something else");
+            }
+            else if (player.getCurrentRoom().getEnemies().size() < 1
+                    && player.getCurrentRoom().findEnemy(input.substring(7).trim()) == null) {
+                System.out.println("You attack the air in confusion");
+            } else if (player.getCurrentRoom().findEnemy(input.substring(7)) != null
+                    && player.getCurrentWeapon() != null) {
 
-                    }
+                Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
+                player.attack(currentEnemy);
+                System.out.println("You hit the " + currentEnemy + " for "
+                        + player.getCurrentWeapon().getDamage());
+                if (currentEnemy.getHealth() < 1) {
+                    Weapon droppedWeapon = currentEnemy.getCurrentWeapon();
+                    player.getCurrentRoomItems().add(droppedWeapon);
+                    player.getCurrentRoom().getEnemies().remove(currentEnemy);
+                    System.out.println("The " + input.substring(7) + " has died!");
+                } else if (currentEnemy.getHealth() > 0) {
+                    currentEnemy.attack(player);
+                    System.out.println("The " + currentEnemy + " hit you for "
+                            + currentEnemy.getCurrentWeapon().getDamage());
+
                 }
             }
-        } else if (input.contains("equip ")) {
+        }
+
+
+        else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                     && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
                 player.equipWeapon((Weapon) player.getCurrentRoom().findItem(input.substring(6)));
@@ -304,6 +310,7 @@ public class Adventure {
                     System.out.print(player.getCurrentRoomItems().get(i).getFullName() + ", ");
                 }
         } else if (player.getCurrentRoom().getEnemies().size() > 0 && player.getCurrentRoomItems().size() < 1) {
+            System.out.println(player.getCurrentRoomDescription());
             for (int i = 0; i < player.getCurrentRoom().getEnemies().size(); i++)
                 System.out.println("You see a "
                         + player.getCurrentRoom().getEnemies().get(i).getFullName());

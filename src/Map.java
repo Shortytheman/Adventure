@@ -36,12 +36,15 @@ public class Map {
     room4.getItems().add(new Thing("shovel"));
     room1.getItems().add(new Food());
     room1.getItems().add(new Food("edible lamp", 200));
-    room1.getItems().add(new MeleeWeapon("Greataxe", 50));
+    room1.getItems().add(new MeleeWeapon("greataxe", 30));
     room2.getItems().add(new Food(-200, "a suspicious looking",
                                   "banana", "that looks completely safe"));
-    room1.getItems().add(new RangedWeapon(20, 5));
+    room1.getItems().add(new RangedWeapon(35, 5));
+    room6.getItems().add(new RangedWeapon("one-hit wonder", 100, 1));
     room2.getItems().add(new Food("green liquid",-200));
-    room1.getEnemies().add(new Enemy("Gargoyle", 9999999, new MeleeWeapon("hammer",1 )));
+    room1.getEnemies().add(new Enemy("gargoyle", 70, new MeleeWeapon("hammer",40 )));
+    room7.getEnemies().add(new Enemy(80, new MeleeWeapon(30)));
+    room3.getEnemies().add(new Enemy(60, new MeleeWeapon(40)));
 
   }
 
@@ -54,18 +57,22 @@ public class Map {
       switch (f) {
         case 2:
           room2.getItems().add(new Thing());
+          room2.getItems().add(new Food());
           m++;
         case 3:
           room3.getItems().add(new Thing());
+          room3.getItems().add(new Food());
           m++;
         case 4:
           room4.getItems().add(new Thing());
+          room4.getItems().add(new Food());
           m++;
         case 5:
           room5.getItems().add(new Thing());
           m++;
         case 6:
           room6.getItems().add(new Thing());
+          room6.getItems().add(new Food());
           m++;
         case 7:
           room7.getItems().add(new Thing());

@@ -19,24 +19,10 @@ public class Room {
     this.name = name;
   }
 
-  public Room() {
-  }
-
-  public void setNorth(Room room) {
-    this.north = room;
-    this.north.south = this;
-  }
-
   public void setSouth(Room room) {
     this.south = room;
     this.south.north = this;
   }
-
-  public void setWest(Room room) {
-    this.west = room;
-    this.west.east = this;
-  }
-
   public void setEast(Room room) {
     this.east = room;
     this.east.west = this;
@@ -62,10 +48,6 @@ public class Room {
     return this.name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getDescription() {
     return this.description;
   }
@@ -82,7 +64,6 @@ public class Room {
     for (int i = 0; i < items.size(); i++) {
       if (items.get(i).getName().equalsIgnoreCase(itemName)
           ^ items.get(i).toString().equalsIgnoreCase(itemName)) {
-        System.out.println("Room findItem: kunne godt finde item");
         item = items.get(i);
         return item;
       }
@@ -98,7 +79,6 @@ public class Room {
     for (int i = 0; i < enemies.size(); i++) {
       if (enemies.get(i).getName().equalsIgnoreCase(enemyName)
           ^ enemies.get(i).toString().equalsIgnoreCase(enemyName)) {
-        System.out.println("Room findEnemy: kunne godt finde enemy");
         enemy = enemies.get(i);
         return enemy;
       }

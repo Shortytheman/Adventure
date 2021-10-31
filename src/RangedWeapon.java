@@ -3,11 +3,17 @@ import java.util.Random;
 
 public class RangedWeapon extends Weapon{
 
-    int damage = 10;
     int ammo;
 
+    public RangedWeapon(String name, int damage, int ammo) {
+        super(damage);
+        this.name = name;
+        this.ammo = ammo;
+        this.prefix = nonConsumablePrefix();
+        this.suffix = nonConsumableSuffix();
 
 
+    }
     public RangedWeapon(int damage, int ammo) {
         super(damage);
         this.ammo = ammo;
@@ -16,10 +22,6 @@ public class RangedWeapon extends Weapon{
         this.suffix = nonConsumableSuffix();
 
     }
-    public int getDamage(){
-        return this.damage;
-    }
-
 
     public boolean usesLeft() {
         boolean usesLeft = true;

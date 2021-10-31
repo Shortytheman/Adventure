@@ -1,5 +1,10 @@
 public abstract class Consumable extends Item{
-    int healthValue = 25;
+    private int healthValue = 30;
+
+    public Consumable(int healthValue) {
+        this.healthValue = healthValue;
+    }
+    public Consumable() {}
 
     public int getHealthValue() {
         return this.healthValue;
