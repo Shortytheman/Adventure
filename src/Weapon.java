@@ -1,5 +1,6 @@
-public class Weapon extends Item{
+public class Weapon extends Item {
     private int damage;
+
 
     public Weapon(int damage) {
         this.damage = damage;
@@ -7,6 +8,10 @@ public class Weapon extends Item{
 
     public int getDamage() {
         return damage;
+    }
+    public boolean usesLeft() {
+
+        return true;
     }
 }
 

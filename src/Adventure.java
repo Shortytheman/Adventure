@@ -178,25 +178,29 @@ public class Adventure {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
         } else if (input.contains("attack ")) {
-            if (player.getCurrentRoom().findEnemy(input.substring(7))
-                != null && player.getCurrentWeapon() != null) {
-                Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
-                System.out.println("Enemy health før angreb " + currentEnemy.getHealth());
-                player.attack(currentEnemy);
-                System.out.println("Enemy health efter angreb " + currentEnemy.getHealth());
-                System.out.println("You hit the " + currentEnemy + " for "
-                        + player.getCurrentWeapon().getDamage());
-                if (currentEnemy.getHealth() < 1) {
-                    Weapon droppedWeapon = currentEnemy.getCurrentWeapon();
-                    player.getCurrentRoomItems().add(droppedWeapon);
-                    player.getCurrentRoom().getEnemies().remove(currentEnemy);
-                    System.out.println("The " + input.substring(7) + " has died!");
-                } else if (currentEnemy.getHealth() > 0) {
-                    System.out.println("Player health før angreb " + player.getHealth());
-                    currentEnemy.attack(player);
-                    System.out.println("Player health efter angreb " + player.getHealth());
-                    // currentEnemy.attack(Player player)
+            if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
+                if (!player.getCurrentWeapon().usesLeft()) {
+                    System.out.println("Your " + player.getCurrentWeapon() + " has no ammunition left, " +
+                            "you will have to use something else");
+                } else {
+                    Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
+                    System.out.println("Enemy health før angreb " + currentEnemy.getHealth());
+                    player.attack(currentEnemy);
+                    System.out.println("Enemy health efter angreb " + currentEnemy.getHealth());
+                    System.out.println("You hit the " + currentEnemy + " for "
+                            + player.getCurrentWeapon().getDamage());
+                    if (currentEnemy.getHealth() < 1) {
+                        Weapon droppedWeapon = currentEnemy.getCurrentWeapon();
+                        player.getCurrentRoomItems().add(droppedWeapon);
+                        player.getCurrentRoom().getEnemies().remove(currentEnemy);
+                        System.out.println("The " + input.substring(7) + " has died!");
+                    } else if (currentEnemy.getHealth() > 0) {
+                        System.out.println("Player health før angreb " + player.getHealth());
+                        currentEnemy.attack(player);
+                        System.out.println("Player health efter angreb " + player.getHealth());
+                        // currentEnemy.attack(Player player)
 
+                    }
                 }
             }
         } else if (input.contains("equip ")) {

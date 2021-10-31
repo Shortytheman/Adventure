@@ -39,9 +39,9 @@ public class Map {
     room1.getItems().add(new MeleeWeapon("Greataxe", 50));
     room2.getItems().add(new Food(-200, "a suspicious looking",
                                   "banana", "that looks completely safe"));
-    room1.getItems().add(new RangedWeapon(20));
+    room1.getItems().add(new RangedWeapon(20, 5));
     room2.getItems().add(new Food("green liquid",-200));
-    room1.getEnemies().add(new Enemy("Gargoyle", 40, new MeleeWeapon("hammer", 10)));
+    room1.getEnemies().add(new Enemy("Gargoyle", 9999999, new MeleeWeapon("hammer",1 )));
 
   }
 
