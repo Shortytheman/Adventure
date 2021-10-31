@@ -29,8 +29,13 @@ public class Adventure {
         System.out.println("\n\n( ಠ ͜ʖ ಠ ) Hello outcast it is I  --  Merlin, the great wizard. " +
                 "You've asked for advice " + "on your journey -- and so, i shall provide!." +
                 "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
-        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
-                "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
+        System.out.println("""
+            ________________________
+            Directions\s
+            To go north: "go north"\s
+            To go south: "go south"\s
+            To go west: "go west"\s
+            To go east: "go east\"""");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
         System.out.println("To check your inventory: \"Inv\"\n________________________");
@@ -74,11 +79,16 @@ public class Adventure {
                 "\nyour name is " + player.getPlayerName() + "?!.. for such " +
                 "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
 
-        System.out.println("\n - Luckily your journey has been blessed by Merlin the great wizard and he wants you " +
-                "to succeed\n" + "he has bestowed upon you the gift of choice, " +
-                "and therefore you have the following choices: ");
-        System.out.println("________________________\nDirections \nTo go north: \"go north\" \nTo go south: " +
-                "\"go south\" \nTo go west: \"go west\" \nTo go east: \"go east\"");
+        System.out.println("""
+             - Luckily your journey has been blessed by Merlin the great wizard and he wants you to succeed
+            he has bestowed upon you the gift of choice, and therefore you have the following choices:\s""");
+        System.out.println("""
+            ________________________
+            Directions\s
+            To go north: "go north"\s
+            To go south: "go south"\s
+            To go west: "go west"\s
+            To go east: "go east\"""");
         System.out.println("________________________\nTo look around: \"Look\"");
         System.out.println("________________________\nTo summon help: \"Help\"");
         System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
@@ -168,7 +178,8 @@ public class Adventure {
                 System.out.println("There is no such thing as a " + input.substring(5) + " in the room.");
             }
         } else if (input.contains("attack ")) {
-            if (player.getCurrentRoom().findEnemy(input.substring(7)) != null && player.getCurrentWeapon() != null) {
+            if (player.getCurrentRoom().findEnemy(input.substring(7))
+                != null && player.getCurrentWeapon() != null) {
                 Enemy currentEnemy = player.getCurrentRoom().findEnemy(input.substring(7));
                 System.out.println("Enemy health før angreb " + currentEnemy.getHealth());
                 player.attack(currentEnemy);
@@ -191,10 +202,9 @@ public class Adventure {
         } else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                     && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
-                player.equipWeapon((Weapon) player.findItem(input.substring(6)));
+                player.equipWeapon((Weapon) player.getCurrentRoom().findItem(input.substring(6)));
                 System.out.println("You have equipped " + input.substring(6));
             }
-
             else if (player.findItem(input.substring(6)) != null
                     && player.findItem(input.substring(6)) instanceof Weapon) {
                 Weapon weapon = (Weapon) player.findItem(input.substring(6));

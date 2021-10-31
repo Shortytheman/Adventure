@@ -95,14 +95,17 @@ public class Player {
             inventory.add(item);
             getCurrentRoomItems().remove(item);
             System.out.println("den her kører");
-
         }
 
     }
     public void equipWeapon(Weapon weapon) {
         if (weapon != null) {
+            if(currentWeapon != null){
+                inventory.add(currentWeapon);
+            }
             setCurrentWeapon(weapon);
-
+            getCurrentRoomItems().remove(weapon);
+            inventory.remove(weapon);
         }
     }
     public void dropItem(Item item) {
