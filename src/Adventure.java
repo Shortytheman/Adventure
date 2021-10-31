@@ -203,13 +203,13 @@ public class Adventure {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                     && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
                 player.equipWeapon((Weapon) player.getCurrentRoom().findItem(input.substring(6)));
-                System.out.println("You have equipped " + input.substring(6));
+                System.out.println("You picked up and equipped the " + input.substring(6));
             }
             else if (player.findItem(input.substring(6)) != null
                     && player.findItem(input.substring(6)) instanceof Weapon) {
                 Weapon weapon = (Weapon) player.findItem(input.substring(6));
                 player.equipWeapon(weapon);
-                System.out.println("You have equipped " + weapon);
+                System.out.println("You have equipped " + weapon + " from your inventory");
             } else if (player.findItem(input.substring(6)) != null
                     && !(player.findItem(input.substring(6)) instanceof Weapon)) {
                 System.out.println("You can't equip that");
