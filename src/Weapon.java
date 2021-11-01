@@ -1,4 +1,4 @@
-public class Weapon extends Item {
+public abstract class Weapon extends Item {
     private int damage;
 
 
@@ -10,7 +10,6 @@ public class Weapon extends Item {
         return damage;
     }
     public boolean usesLeft() {
-
         return true;
     }
 }

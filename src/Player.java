@@ -5,7 +5,7 @@ public class Player {
     private final int MAX_STEPS = 30;
     private Room currentRoom;
     private String playerName;
-    private int health = 20;
+    private int health = 100;
     private ArrayList<Item> inventory = new ArrayList<>();
     private Weapon currentWeapon;
 
@@ -48,10 +48,6 @@ public class Player {
 
     public void incrementStepCounter() {
         stepCounter++;
-    }
-
-    public void setStepCounter(int stepCounter) {
-        this.stepCounter = stepCounter;
     }
 
     public int getMAX_STEPS() {
@@ -115,24 +111,21 @@ public class Player {
     public void eatConsumable(Consumable consumable) {
         setHealth(getHealth() + consumable.getHealthValue());
     }
-    public void checkHealth() {
+    public String checkHealth() {
+        String status = "";
         if (getHealth() > 74) {
-            System.out.println("You are in great health and ready to fight!");
+            status = "You are in great health and ready to fight!";
         } else if (getHealth() <= 74 && getHealth() > 50) {
-            System.out.println("You are slightly wounded but can still fight.");
+            status = "You are slightly wounded but can still fight.";
         } else if (getHealth() <= 50 && getHealth() > 25) {
-            System.out.println("You are in poor shape and should probably eat something");
+            status = "You are in poor shape and should probably eat something";
         } else if (getHealth() <= 25) {
-            System.out.println("You are severely wounded and need to avoid fighting if you can");
+            status = "You are severely wounded and need to avoid fighting if you can";
         }
+        return status;
     }
     public Weapon getCurrentWeapon() {
         return currentWeapon;
     }
-   /* if (getCurrentRoom().getName().equalsIgnoreCase("chance room")) {
-      RoomActivity activity = new RoomActivity();
-      activity.diceGame();
-      }
-      */
     }
 
