@@ -43,8 +43,9 @@ public class Adventure {
         Take item: "take" followed by item
         Equip a weapon: "Equip" followed by weapon name
         Drop item/weapon: "drop" followed by its name
-        See current inventory: "Inventory"
+        See current inventory: "Inventory" or "inv"
         Attack enemy: "attack" followed by enemy name
+        See your current condition: "health"
         ________________________
         Look around: "Look"
         ________________________
@@ -109,7 +110,8 @@ public void run() {
         Drop item/weapon: "drop" followed by its name
         See current inventory: "Inventory"
         Attack enemy: "attack" followed by enemy name
-        ________________________
+        See your current condition: "health"
+        ________________________    
         Look around: "Look"
         ________________________
         Summon help: "Help"
@@ -225,12 +227,9 @@ public void run() {
                     currentEnemy.attack(player);
                     System.out.println("The " + currentEnemy + " hit you for "
                             + currentEnemy.getCurrentWeapon().getDamage());
-
                 }
             }
         }
-
-
         else if (input.contains("equip ")) {
             if (player.getCurrentRoom().findItem(input.substring(6)) != null
                     && player.getCurrentRoom().findItem(input.substring(6)) instanceof Weapon) {
@@ -314,10 +313,13 @@ public void run() {
 
     public void printInventory() {
         int itemNumber = 1;
-        if (player.getInventory().size() != 0)
+        if (player.getInventory().size() != 0){
             for (Item s : player.getInventory()) {
                 System.out.println(itemNumber + ". " + s);
                 itemNumber++;
+            }
+            System.out.println("\nCurrently equipped weapon:\n" + player.getCurrentWeapon().getName()
+                + "\nDamage: " + player.getCurrentWeapon().getDamage());
             }
         else {
             System.out.println("There is nothing in your inventory.");

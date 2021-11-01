@@ -6,8 +6,7 @@ public class Map {
   Room room1 = new Room("cave entrance", "There is a glooming light in the corner, must be from" +
       " where you came in.. you¨ll have to take either the way " +
       "to the right or straight down to explore further..");
-  Room room2 = new Room("chance room", "here, only the lucky will persevere. A man approaches " +
-      "you with a deal");
+  Room room2 = new Room("chance room", "here, only the lucky will persevere.");
   Room room3 = new Room("room of the neglected", "The room is filled with a smell of old feet" +
       " and bad quality soap, better get out quick, yuck..");
   Room room4 = new Room("room of distractions", "Someone filled this room with puppies, look at " +
@@ -41,10 +40,11 @@ public class Map {
                                   "banana", "that looks completely safe"));
     room1.getItems().add(new RangedWeapon(35, 5));
     room6.getItems().add(new RangedWeapon("one-hit wonder", 100, 1));
-    room2.getItems().add(new Food("green liquid",-200));
+    room3.getItems().add(new Food("green liquid",-20));
     room1.getEnemies().add(new Enemy("gargoyle", 70, new MeleeWeapon("hammer",40 )));
     room7.getEnemies().add(new Enemy(80, new MeleeWeapon(30)));
     room3.getEnemies().add(new Enemy(60, new MeleeWeapon(40)));
+    room6.getEnemies().add(new Enemy(20, new MeleeWeapon(50)));
 
   }
 
