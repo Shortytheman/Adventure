@@ -81,12 +81,10 @@ public class Player {
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getName().equalsIgnoreCase(itemName)
                     || inventory.get(i).toString().equalsIgnoreCase(itemName)) {
-                System.out.println("findItem: kunne godt finde item");
                 item = inventory.get(i);
                 return item;
             }
         }
-        System.out.println("findItem: den returner null");
         return null;
     }
 
@@ -94,7 +92,6 @@ public class Player {
         if (item != null) {
             inventory.add(item);
             getCurrentRoomItems().remove(item);
-            System.out.println("den her kører");
         }
 
     }

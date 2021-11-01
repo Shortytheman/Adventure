@@ -30,30 +30,41 @@ public class Adventure {
                 "You've asked for advice " + "on your journey -- and so, i shall provide!." +
                 "\n\n( ಠ ͜ʖ ಠ )⊃══⛧⌒｡ ~ALAKAZAM~");
         System.out.println("""
-            ________________________
-            Directions\s
-            To go north: "go north"\s
-            To go south: "go south"\s
-            To go west: "go west"\s
-            To go east: "go east\"""");
-        System.out.println("________________________\nTo look around: \"Look\"");
-        System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
-        System.out.println("To check your inventory: \"Inv\"\n________________________");
-        System.out.println("Make your choice to proceed, " + player.getPlayerName() + "!");
-    }
+        ________________________
+        Directions
+        Go north: "go north"
+        Go south: "go south"
+        Go west: "go west"
+        Go east: "go east"
+        ________________________
+        Interactions
+        Take item: "take" followed by item
+        Equip a weapon: "Equip" followed by weapon name
+        Drop item/weapon: "drop" followed by its name
+        See current inventory: "Inventory"
+        Attack enemy: "attack" followed by enemy name
+        ________________________
+        Look around: "Look"
+        ________________________
+        Summon help: "Help"
+        ________________________
+        Exit the game: "Exit"
+        """);
+    System.out.println("Make your choice to proceed, " + player.getPlayerName() + "!");
+}
 
-    void exitGame() {
-        setGameIsRunning(false);
-    }
+void exitGame() {
+    setGameIsRunning(false);
+}
 
-    public void run() {
-        gameMap.makeConnections();
-        gameMap.addItems();
-        player.setCurrentRoom(gameMap.room1);
+public void run() {
+    gameMap.makeConnections();
+    gameMap.addItems();
+    player.setCurrentRoom(gameMap.room1);
 
-        System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, " +
-                "sign the waiver of \"prolly ok\"\n");
-        System.out.print("""
+    System.out.println("Welcome young traveler, to the cave of the unforeseen.. If you dare enter, " +
+            "sign the waiver of \"prolly ok\"\n");
+    System.out.print("""
                 |The waiver of prolly ok                                            |
                 |bla bla, something about having being trapped forever jada jada..  |
                 |bla bla.. giving away your soul to the kingdom of mages jada jada..|
@@ -77,21 +88,32 @@ public class Adventure {
                 "\nI will grant you.. hmm.." +
                 "100 steps in my cave before exhaustion gets the best of you. - Waiiit..\"looking at the waiver\".. " +
                 "\nyour name is " + player.getPlayerName() + "?!.. for such " +
-                "a puny name i shall ony provide you with 30 steps.. best of luck, you'll need it!");
+                "a puny name i shall only provide you with 30 steps.. best of luck, you'll need it!");
 
         System.out.println("""
              - Luckily your journey has been blessed by Merlin the great wizard and he wants you to succeed
             he has bestowed upon you the gift of choice, and therefore you have the following choices:\s""");
-        System.out.println("""
-            ________________________
-            Directions\s
-            To go north: "go north"\s
-            To go south: "go south"\s
-            To go west: "go west"\s
-            To go east: "go east\"""");
-        System.out.println("________________________\nTo look around: \"Look\"");
-        System.out.println("________________________\nTo summon help: \"Help\"");
-        System.out.println("________________________\nTo exit the game: \"Exit\"\n________________________");
+    System.out.println("""
+        ________________________
+        Directions
+        Go north: "go north"
+        Go south: "go south"
+        Go west: "go west"
+        Go east: "go east"
+        ________________________
+        Interactions
+        Take item: "take" followed by item
+        Equip a weapon: "Equip" followed by weapon name
+        Drop item/weapon: "drop" followed by its name
+        See current inventory: "Inventory"
+        Attack enemy: "attack" followed by enemy name
+        ________________________
+        Look around: "Look"
+        ________________________
+        Summon help: "Help"
+        ________________________
+        Exit the game: "Exit"
+        """);
         System.out.println("Best make haste, " + player.getPlayerName() + ", you don't have much time!");
 
         while (getGameIsRunning()) {
@@ -218,7 +240,7 @@ public class Adventure {
                     && !(player.findItem(input.substring(6)) instanceof Weapon)) {
                 System.out.println("You can't equip that");
             }
-            else if (player.getCurrentWeapon().getName().equalsIgnoreCase(input.substring(6))){
+            else if (player.getCurrentWeapon() != null && player.getCurrentWeapon().getName().equalsIgnoreCase(input.substring(6))){
                 System.out.println("You already have the " + input.substring(6) + " equipped");
             }
             else if (player.getCurrentRoom().findItem(input.substring(6)) != null
